@@ -49,21 +49,6 @@
 
 		<!-- Header -->
 		<header class="header">
-			<div class="profile">
-				<div class="image">
-					<a href="#"><img src="images/profile.png" alt="Kevin Carmen"></a>
-				</div>
-				<div class="title">Kevin Carmen</div>
-				<div class="subtitle subtitle-typed">
-					<div class="typing-title">
-						<p>Especialista en Soporte TI</p>
-						<p>Implementación de Servidores</p>
-						<p>Mantenimiento y Formateo de PCs</p>
-						<p>Soporte Técnico Remoto y Presencial</p>
-					</div>
-				</div>
-			</div>
-
 			<div class="top-menu">
 				<ul>
 					<li class="active"><a href="#about-card"><span class="icon ion-person"></span><span class="link">Sobre mí</span></a></li>
@@ -73,6 +58,48 @@
 				</ul>
 			</div>
 		</header>
+
+		<!-- Card - Started -->
+		<div class="card-started" id="home-card">
+			<!-- Profile -->
+			<div class="profile">
+				<!-- profile image -->
+				<div class="slide" style="background-image: url(images/bg30.jpg);"></div>
+
+				<!-- profile photo -->
+				<div class="image">
+					<img src="images/profile.png" alt="Kevin Carmen" />
+				</div>
+
+				<!-- profile titles -->
+				<div class="title">Kevin Carmen</div>
+				<div class="subtitle subtitle-typed">
+					<div class="typing-title">
+						<p>Especialista en Soporte TI</p>
+						<p>Implementación de Servidores</p>
+						<p>Mantenimiento y Formateo de PCs</p>
+						<p>Soporte Técnico Remoto y Presencial</p>
+					</div>
+				</div>
+
+				<!-- profile socials -->
+				<div class="social">
+					<a target="_blank" href="https://linkedin.com/"><span class="ion ion-social-linkedin"></span></a>
+					<a target="_blank" href="https://github.com/"><span class="ion ion-social-github"></span></a>
+					<a target="_blank" href="mailto:kevin@example.com"><span class="ion ion-email"></span></a>
+				</div>
+
+				<!-- profile buttons -->
+				<div class="lnks">
+					<a href="#" class="lnk">
+						<span class="text">Descargar CV</span>
+					</a>
+					<a href="#contacts-card" class="lnk discover">
+						<span class="text">Contáctame</span>
+					</a>
+				</div>
+			</div>
+		</div>
 
 		<!-- Card - About -->
 		<div class="card-inner animated active" id="about-card">
@@ -201,5 +228,17 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/typed.js"></script>
 <script src="js/scripts.js"></script>
+	
+	<!-- Script de inicialización para verificar la imagen -->
+	<script>
+		$(document).ready(function() {
+			// Verificar que la imagen se cargue correctamente
+			$('.card-started .profile .image img').on('load', function() {
+				console.log('✅ Imagen de perfil cargada correctamente');
+			}).on('error', function() {
+				console.error('❌ Error al cargar la imagen de perfil');
+			});
+		});
+	</script>
 </body>
 </html>
