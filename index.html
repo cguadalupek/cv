@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-	<!--
-		Basic
-	-->
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Kevin Carmen</title>
@@ -13,14 +9,8 @@
 	<meta name="keywords" content="vcard, resposnive, resume, personal, card, cv, cards, portfolio" />
 	<meta name="author" content="bslthemes" />
 
-	<!--
-		Load Fonts
-	-->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-	<!--
-		Load CSS
-	-->
 	<link rel="stylesheet" href="css/basic.css" />
 	<link rel="stylesheet" href="css/layout.css" />
 	<link rel="stylesheet" href="css/blogs.css" />
@@ -28,55 +18,352 @@
 	<link rel="stylesheet" href="css/magnific-popup.css" />
 	<link rel="stylesheet" href="css/animate.css" />
 	<link rel="stylesheet" href="css/owl.carousel.css" />
-
-	<!--
-		Background Gradient
-	-->
 	<link rel="stylesheet" href="css/gradient.css" />
-
-	<!--
-		Template New-Skin
-	-->
 	<link rel="stylesheet" href="css/new-skin/new-skin.css" />
-
-	<!--
-		Template RTL
-	-->
-	<!--<link rel="stylesheet" href="css/rtl-new.css" />-->
-
-	<!--
-		Template Colors
-	-->
 	<link rel="stylesheet" href="css/demos/demo-2-colors.css" />
-	<!--<link rel="stylesheet" href="css/template-colors/blue.css" />-->
-	<!--<link rel="stylesheet" href="css/template-colors/orange.css" />-->
-	<!--<link rel="stylesheet" href="css/template-colors/pink.css" />-->
-	<!--<link rel="stylesheet" href="css/template-colors/purple.css" />-->
-	<!--<link rel="stylesheet" href="css/template-colors/red.css" />-->
-
-	<!--
-		Template Dark
-	-->
 	<link rel="stylesheet" href="css/new-skin/classic-skin.css" />
 	<link rel="stylesheet" href="css/template-dark/dark.css" />
 
-
-	<!--[if lt IE 9]>
-	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<!--
-		Favicons
-	-->
 	<link rel="shortcut icon" href="images/favicons/favicon.ico">
-
+	
+	<!-- Estilos para el blog integrado -->
+	<style>
+		/* Contenedor principal con animaciones */
+		.blog-post-content {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+			opacity: 1;
+			transform: translateX(0);
+			transition: all 0.6s ease;
+		}
+		
+		.blog-post-content.slide-in {
+			animation: slideInRight 0.6s ease forwards;
+		}
+		
+		.blog-post-content.slide-out {
+			animation: slideOutLeft 0.6s ease forwards;
+		}
+		
+		@keyframes slideInRight {
+			from {
+				opacity: 0;
+				transform: translateX(100px);
+			}
+			to {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
+		
+		@keyframes slideOutLeft {
+			from {
+				opacity: 1;
+				transform: translateX(0);
+			}
+			to {
+				opacity: 0;
+				transform: translateX(-100px);
+			}
+		}
+		
+		/* Vista de lista del blog con animaciones */
+		#blog-list-view {
+			opacity: 1;
+			transform: translateX(0);
+			transition: all 0.6s ease;
+		}
+		
+		#blog-list-view.slide-in {
+			animation: slideInLeft 0.6s ease forwards;
+		}
+		
+		#blog-list-view.slide-out {
+			animation: slideOutRight 0.6s ease forwards;
+		}
+		
+		@keyframes slideInLeft {
+			from {
+				opacity: 0;
+				transform: translateX(-100px);
+			}
+			to {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
+		
+		@keyframes slideOutRight {
+			from {
+				opacity: 1;
+				transform: translateX(0);
+			}
+			to {
+				opacity: 0;
+				transform: translateX(100px);
+			}
+		}
+		
+		/* Header del blog */
+		.blog-header {
+			margin-bottom: 30px;
+			border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+			padding-bottom: 20px;
+		}
+		
+		.back-button .button {
+			display: inline-flex;
+			align-items: center;
+			padding: 10px 20px;
+			background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+			color: white;
+			text-decoration: none;
+			border-radius: 25px;
+			transition: all 0.3s ease;
+			font-size: 14px;
+			font-weight: 500;
+		}
+		
+		.back-button .button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+		}
+		
+		.back-button .icon {
+			margin-right: 8px;
+		}
+		
+		.post-meta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 20px;
+			color: rgba(255, 255, 255, 0.7);
+			font-size: 14px;
+			margin-top: 15px;
+		}
+		
+		.post-meta span {
+			display: flex;
+			align-items: center;
+		}
+		
+		/* Título principal */
+		.post-title {
+			font-size: 1.8em;
+			font-weight: 700;
+			color: white;
+			margin-bottom: 20px;
+			line-height: 1.2;
+			text-align: center;
+		}
+		
+		/* Imagen destacada */
+		.featured-image {
+			margin-bottom: 25px;
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+		}
+		
+		.featured-image img {
+			width: 100%;
+			height: auto;
+			display: block;
+		}
+		
+		/* Texto del post con colores claros */
+		.post-text {
+			color: rgba(255, 255, 255, 0.9);
+			line-height: 1.6;
+			font-size: 14px;
+		}
+		
+		.post-text h2 {
+			color: white;
+			font-size: 1.3em;
+			font-weight: 600;
+			margin: 25px 0 12px 0;
+			padding-bottom: 6px;
+			border-bottom: 2px solid rgba(255, 152, 0, 0.5);
+		}
+		
+		.post-text p {
+			margin-bottom: 12px;
+			color: rgba(255, 255, 255, 0.8);
+		}
+		
+		.post-text ul, .post-text ol {
+			margin: 12px 0;
+			padding-left: 20px;
+		}
+		
+		.post-text li {
+			margin-bottom: 6px;
+			color: rgba(255, 255, 255, 0.8);
+		}
+		
+		.post-text strong {
+			color: #ff9800;
+			font-weight: 600;
+		}
+		
+		/* Blockquotes */
+		blockquote {
+			background: rgba(255, 255, 255, 0.05);
+			border-left: 4px solid #ff9800;
+			padding: 12px 16px;
+			margin: 16px 0;
+			border-radius: 0 8px 8px 0;
+			font-style: italic;
+			color: rgba(255, 255, 255, 0.8);
+			font-size: 13px;
+		}
+		
+		/* Grid de tendencias */
+		.trends-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+			gap: 12px;
+			margin: 16px 0;
+		}
+		
+		.trend-item {
+			background: rgba(255, 255, 255, 0.05);
+			padding: 16px;
+			border-radius: 8px;
+			text-align: center;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+			transition: all 0.3s ease;
+		}
+		
+		.trend-item:hover {
+			background: rgba(255, 255, 255, 0.08);
+			border-color: rgba(255, 152, 0, 0.3);
+			transform: translateY(-3px);
+		}
+		
+		.trend-icon {
+			font-size: 1.6em;
+			color: #ff9800;
+			margin-bottom: 8px;
+		}
+		
+		.trend-item h4 {
+			color: white;
+			font-size: 1em;
+			margin-bottom: 6px;
+			font-weight: 600;
+		}
+		
+		.trend-item p {
+			color: rgba(255, 255, 255, 0.7);
+			font-size: 12px;
+			margin: 0;
+		}
+		
+		/* Footer del post */
+		.post-footer {
+			margin-top: 40px;
+			padding-top: 25px;
+			border-top: 2px solid rgba(255, 255, 255, 0.1);
+		}
+		
+		.tags {
+			margin-bottom: 20px;
+		}
+		
+		.tag {
+			display: inline-block;
+			background: #ff9800;
+			color: white;
+			padding: 6px 12px;
+			border-radius: 15px;
+			margin: 3px;
+			font-size: 11px;
+			font-weight: 500;
+			text-decoration: none;
+			transition: all 0.3s ease;
+		}
+		
+		.tag:hover {
+			background: #f57c00;
+			transform: translateY(-2px);
+		}
+		
+		.share-buttons {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+		
+		.share-label {
+			color: rgba(255, 255, 255, 0.7);
+			font-weight: 500;
+		}
+		
+		.share-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 35px;
+			height: 35px;
+			border-radius: 50%;
+			color: white;
+			text-decoration: none;
+			font-size: 14px;
+			transition: all 0.3s ease;
+		}
+		
+		.share-btn:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+		}
+		
+		.share-btn.facebook { background: #3b5998; }
+		.share-btn.twitter { background: #1da1f2; }
+		.share-btn.linkedin { background: #0077b5; }
+		
+		/* Responsive */
+		@media (max-width: 768px) {
+			.blog-post-content {
+				padding: 12px;
+			}
+			
+			.post-title {
+				font-size: 1.5em;
+			}
+			
+			.post-text {
+				font-size: 13px;
+			}
+			
+			.post-text h2 {
+				font-size: 1.2em;
+			}
+			
+			.trends-grid {
+				grid-template-columns: 1fr;
+			}
+			
+			.trend-item {
+				padding: 12px;
+			}
+			
+			.trend-item h4 {
+				font-size: 0.95em;
+			}
+			
+			.trend-item p {
+				font-size: 11px;
+			}
+		}
+	</style>
 </head>
 
 <body>
 	<div class="page new-skin">
-
-		<!-- preloader -->
 		<div class="preloader">
 			<div class="centrize full-width">
 				<div class="vertical-center">
@@ -88,33 +375,23 @@
 			</div>
 		</div>
 
-		<!-- background -->
 		<div class="background gradient">
 			<ul class="bg-bubbles">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
 		</div>
 
-		<!--
-			Container
-		-->
 		<div class="container opened" data-animation-in="fadeInLeft" data-animation-out="fadeOutLeft">
-
-			<!--
-				Header
-			-->
 			<header class="header">
-
-				<!-- header profile -->
 				<div class="profile">
 					<div class="image">
 						<a href="#">
@@ -130,22 +407,18 @@
 					</div>
 				</div>
 
-				<!-- menu btn -->
-				<!--<a href="#" class="menu-btn"><span></span></a>-->
-
-				<!-- menu -->
 				<div class="top-menu">
 					<ul>
 						<li class="active">
-							<a href="#about-card">
-								<span class="icon ion-person"></span>
-								<span class="link">Sobre mi</span>
-							</a>
-						</li>
-						<li>
 							<a href="#resume-card">
 								<span class="icon ion-android-list"></span>
 								<span class="link">CV</span>
+							</a>
+						</li>
+						<li>
+							<a href="#services-card">
+								<span class="icon ion-person"></span>
+								<span class="link">Servicios</span>
 							</a>
 						</li>
 						<li>
@@ -168,46 +441,26 @@
 						</li>
 					</ul>
 				</div>
-
 			</header>
 
-			<!--
-				Card - Started
-			-->
 			<div class="card-started" id="home-card">
-
-				<!--
-					Profile
-				-->
 				<div class="profile">
-
-					<!-- profile image -->
 					<div class="slide" style="background-image: url(images/bg30.jpg);"></div>
-
-					<!-- profile photo -->
 					<div class="image">
 						<img src="images/profile30.png" alt="" />
 					</div>
-
-					<!-- profile titles -->
 					<div class="title">Kevin Carmen Guadalupe</div>
-					<!--<div class="subtitle">Web Designer</div>-->
 					<div class="subtitle subtitle-typed">
 						<div class="typing-title">
 							<p>Tecnico IT</p>
 							<p>Analista Soporte TI</p>
 						</div>
 					</div>
-
-					<!-- profile socials -->
 					<div class="social">
 						<a target="_blank" href="https://youtube.com/"><span class="fa fa-youtube"></span></a>
 						<a target="_blank" href="https://twitter.com/"><span class="fa fa-twitter"></span></a>
 						<a target="_blank" href="https://github.com/"><span class="fa fa-github"></span></a>
-
 					</div>
-
-					<!-- profile buttons -->
 					<div class="lnks">
 						<a href="#" class="lnk">
 							<span class="text">Descargar CV</span>
@@ -216,116 +469,51 @@
 							<span class="text">Contactame</span>
 						</a>
 					</div>
-
 				</div>
-
 			</div>
 
-			<!--
-				Card - About
-			-->
-			<div class="card-inner animated active" id="about-card">
+			<div class="card-inner" id="services-card">
 				<div class="card-wrap">
-
-					<!--
-						About
-					-->
-					<div class="content about">
-
-						<!-- title -->
-						<div class="title">Sobre Mi</div>
-
-						<!-- content -->
-						<div class="row">
-							<div class="col col-d-6 col-t-6 col-m-12 border-line-v">
-								<div class="text-box">
-									<p>
-										Soy Kevin Carmen, Técnico IT y Analista de Soporte TI, apasionado por la tecnología desde que tengo memoria.
-										Me dedico a mantener y optimizar computadoras, implementar servidores de archivos, configurar redes y asegurar que todo funcione sin interrupciones.
-										Me encanta resolver problemas, encontrar soluciones prácticas y ayudar a que las personas y empresas trabajen con la máxima eficiencia.
-										Para mí, cada proyecto es una oportunidad de aprender, mejorar y dejar mi sello de calidad.
-									</p>
-								</div>
-							</div>
-							<div class="col col-d-6 col-t-6 col-m-12 border-line-v">
-								<div class="info-list">
-									<ul>
-										<li><strong>Edad . . . . .</strong> 32</li>
-										<li><strong>Pais . . . . .</strong> Perú</li>
-										<li><strong>Freelance . . . . .</strong> Disponible</li>
-										<li><strong>Dirección . . . . .</strong> Lima, Perú</li>
-									</ul>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-
-					</div>
-
-					<!--
-						Services
-					-->
 					<div class="content services">
-
-						<!-- title -->
 						<div class="title">Mis Servicios</div>
-
-						<!-- content -->
 						<div class="row service-items border-line-v">
-							<!-- service item -->
 							<div class="col col-d-6 col-t-6 col-m-12 border-line-h">
 								<div class="service-item">
 									<div class="icon">
 										<span class="fa fa-user"></span>
 									</div>
 									<div class="name">
-										<span >
-										Soporte Técnico
-										</span>
+										<span>Soporte Técnico</span>
 									</div>
 									<div class="desc">
-										<div >
+										<div>
 											<p>Brindo asistencia remota y presencial para diagnosticar, resolver y prevenir problemas en computadoras. Mi objetivo es garantizar que tus equipos funcionen de forma estable, segura y con el mejor rendimiento posible.</p>
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- service item -->
 							<div class="col col-d-6 col-t-6 col-m-12 border-line-h">
 								<div class="service-item">
 									<div class="icon">
 										<span class="fa fa-buysellads"></span>
 									</div>
 									<div class="name">
-										<span >
-										Diseñador Gráfico & Editor								
-									   </span>
+										<span>Diseñador Gráfico & Editor</span>
 									</div>
 									<div class="desc">
-										<div >
-											<p>Desarrollo piezas visuales y contenido audiovisual con un enfoque profesional y creativo. Utilizo herramientas como Photoshop para crear y retocar imágenes, y Premiere para editar videos de forma dinámica. </p>
+										<div>
+											<p>Desarrollo piezas visuales y contenido audiovisual con un enfoque profesional y creativo. Utilizo herramientas como Photoshop para crear y retocar imágenes, y Premiere para editar videos de forma dinámica.</p>
 										</div>
 									</div>
 								</div>
 							</div>
-
 						</div>
 						<div class="clear"></div>
-
 					</div>
 
-					<!--
-						Price Tables
-					-->
 					<div class="content pricing">
-
-						<!-- title -->
 						<div class="title">Pricing</div>
-
-						<!-- content -->
 						<div class="row pricing-items">
-
-							<!-- pricing item -->
 							<div class="col col-d-6 col-t-6 col-m-12 border-line-v">
 								<div class="pricing-item">
 									<div class="icon"><i class="fa fa-battery-half"></i></div>
@@ -351,8 +539,6 @@
 									</div>
 								</div>
 							</div>
-
-							<!-- pricing item -->
 							<div class="col col-d-6 col-t-6 col-m-12 border-line-v">
 								<div class="pricing-item">
 									<div class="icon"><i class="fa fa-battery-full"></i></div>
@@ -378,72 +564,44 @@
 									</div>
 								</div>
 							</div>
-
 							<div class="clear"></div>
 						</div>
-
 					</div>
 
-					<!--
-						Fun Fact
-					-->
 					<div class="content fuct">
-
-						<!-- title -->
 						<div class="title">Fun Fact</div>
-
-						<!-- content -->
 						<div class="row fuct-items">
-
-							<!-- fuct item -->
 							<div class="col col-d-3 col-t-3 col-m-6 border-line-v">
 								<div class="fuct-item">
 									<div class="icon"><span class="fa fa-music"></span></div>
 									<div class="name">80 Albumes Listened</div>
 								</div>
 							</div>
-
-							<!-- fuct item -->
 							<div class="col col-d-3 col-t-3 col-m-6 border-line-v">
 								<div class="fuct-item">
 									<div class="icon"><span class="fa fa-trophy"></span></div>
 									<div class="name">15 Awards Won</div>
 								</div>
 							</div>
-
-							<!-- fuct item -->
 							<div class="col col-d-3 col-t-3 col-m-6 border-line-v">
 								<div class="fuct-item">
 									<div class="icon"><span class="fa fa-coffee"></span></div>
 									<div class="name">1 000 Cups of coffee</div>
 								</div>
 							</div>
-
-							<!-- fuct item -->
 							<div class="col col-d-3 col-t-3 col-m-6 border-line-v">
 								<div class="fuct-item">
 									<div class="icon"><span class="fa fa-flag"></span></div>
 									<div class="name">10 Countries Visited</div>
 								</div>
 							</div>
-
 							<div class="clear"></div>
 						</div>
-
 					</div>
 
-					<!--
-						Clients
-					-->
 					<div class="content clients">
-
-						<!-- title -->
 						<div class="title">Clients</div>
-
-						<!-- content -->
 						<div class="row client-items">
-
-							<!-- client item -->
 							<div class="col col-d-3 col-t-3 col-m-6 border-line-v">
 								<div class="client-item">
 									<div class="image">
@@ -453,8 +611,6 @@
 									</div>
 								</div>
 							</div>
-
-							<!-- client item -->
 							<div class="col col-d-3 col-t-3 col-m-6 border-line-v">
 								<div class="client-item">
 									<div class="image">
@@ -464,8 +620,6 @@
 									</div>
 								</div>
 							</div>
-
-							<!-- client item -->
 							<div class="col col-d-3 col-t-3 col-m-6 border-line-v">
 								<div class="client-item">
 									<div class="image">
@@ -475,8 +629,6 @@
 									</div>
 								</div>
 							</div>
-
-							<!-- client item -->
 							<div class="col col-d-3 col-t-3 col-m-6 border-line-v">
 								<div class="client-item">
 									<div class="image">
@@ -486,26 +638,19 @@
 									</div>
 								</div>
 							</div>
-
 							<div class="clear"></div>
 						</div>
-
 					</div>
 
-					<!-- Quote -->
 					<div class="content quote">
-
-						<!-- title -->
 						<div class="title">
-							<span >Quote</span>
+							<span>Quote</span>
 						</div>
-
-						<!-- content -->
 						<div class="row">
 							<div class="col col-d-12 col-t-12 col-m-12 border-line-v">
 								<div class="revs-item">
 									<div class="text">
-										<div >
+										<div>
 											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 										</div>
 									</div>
@@ -523,114 +668,68 @@
 							</div>
 							<div class="clear"></div>
 						</div>
-
 					</div>
-
 				</div>
 			</div>
 
-			<!--
-				Card - Resume
-			-->
-			<div class="card-inner" id="resume-card">
+			<div class="card-inner animated active" id="resume-card">
 				<div class="card-wrap">
-
-					<!--
-						Resume
-					-->
 					<div class="content resume">
-
-						<!-- title -->
-						<div class="title">Resume</div>
-
-						<!-- content -->
+						<div class="title">CV</div>
 						<div class="row">
-
-							<!-- experience -->
 							<div class="col col-d-6 col-t-6 col-m-12 border-line-v">
 								<div class="resume-title border-line-h">
 									<div class="icon"><i class="fa fa-briefcase"></i></div>
-									<div class="name">Experience</div>
+									<div class="name">Experiencia</div>
 								</div>
 								<div class="resume-items">
 									<div class="resume-item border-line-h active">
-										<div class="date">2013 - Present</div>
-										<div class="name">Art Director</div>
-										<div class="company">Facebook Inc.</div>
-										<p>
-											Collaborate with creative and development teams on the execution of ideas.
-										</p>
+										<div class="date">2025 - Presente</div>
+										<div class="name">Analista de Mesa de Ayuda</div>
+										<div class="company">MAF</div>
+										<p>Brindo la atencion y resolución de incidentes de hardware, software y accesos en entorno financiero, asegurando la continuidad operativa y cumplimiento de SLA.</p>
 									</div>
 									<div class="resume-item border-line-h">
-										<div class="date">2011 - 2012</div>
-										<div class="name">Front-end Developer</div>
-										<div class="company">Google Inc.</div>
-										<p>
-											Monitored technical aspects of the front-end delivery for several projects.
-										</p>
-									</div>
-									<div class="resume-item">
-										<div class="date">2009 - 2010</div>
-										<div class="name">Senior Developer</div>
-										<div class="company">Abc Inc.</div>
-										<p>
-											Optimize website performance using latest technology.
-										</p>
+										<div class="date">2024 - 2025</div>
+										<div class="name">Technical Support On-Site</div>
+										<div class="company">Inchcape Motor</div>
+										<p>Brinde la atencion y resolución de incidencias de hardware, software y redes en concesionaria automotriz, garantizando la operatividad de los sistemas.</p>
 									</div>
 								</div>
 							</div>
-
-							<!-- education -->
 							<div class="col col-d-6 col-t-6 col-m-12 border-line-v">
 								<div class="resume-title border-line-h">
 									<div class="icon"><i class="fa fa-university"></i></div>
-									<div class="name">Education</div>
+									<div class="name">Educación</div>
 								</div>
 								<div class="resume-items">
 									<div class="resume-item border-line-h">
 										<div class="date">2006 - 2008</div>
 										<div class="name">Art University</div>
 										<div class="company">New York</div>
-										<p>
-											Bachelor's Degree in Computer Science ABC Technical Institute, Jefferson, Missouri
-										</p>
+										<p>Bachelor's Degree in Computer Science ABC Technical Institute, Jefferson, Missouri</p>
 									</div>
 									<div class="resume-item border-line-h">
 										<div class="date">2005 - 2006</div>
 										<div class="name">Programming Course</div>
 										<div class="company">Paris</div>
-										<p>
-											Coursework - Git, WordPress, Javascript, iOS, Android.
-										</p>
+										<p>Coursework - Git, WordPress, Javascript, iOS, Android.</p>
 									</div>
 									<div class="resume-item">
 										<div class="date">2004 - 2005</div>
 										<div class="name">Web Design Course</div>
 										<div class="company">London</div>
-										<p>
-											Converted Photoshop layouts to web pages using HTML, CSS, and JavaScript
-										</p>
+										<p>Converted Photoshop layouts to web pages using HTML, CSS, and JavaScript</p>
 									</div>
 								</div>
 							</div>
-
 							<div class="clear"></div>
 						</div>
-
 					</div>
 
-					<!--
-						Skills
-					-->
 					<div class="content skills">
-
-						<!-- title -->
 						<div class="title">My Skills</div>
-
-						<!-- content -->
 						<div class="row">
-
-							<!-- skill item -->
 							<div class="col col-d-6 col-t-6 col-m-12 border-line-v">
 								<div class="skills-list">
 									<div class="skill-title border-line-h">
@@ -665,8 +764,6 @@
 									</ul>
 								</div>
 							</div>
-
-							<!-- skill item -->
 							<div class="col col-d-6 col-t-6 col-m-12 border-line-v">
 								<div class="skills-list dotted">
 									<div class="skill-title border-line-h">
@@ -694,178 +791,23 @@
 										</li>
 										<li>
 											<div class="name">French</div>
-											<div class="progress ">
+											<div class="progress">
 												<div class="percentage" style="width:70%;"></div>
 											</div>
 										</li>
 									</ul>
 								</div>
 							</div>
-
-							<!-- skill item -->
-							<div class="col col-d-6 col-t-6 col-m-12 border-line-v">
-								<div class="skills-list circles">
-									<div class="skill-title border-line-h">
-										<div class="icon"><i class="fa fa-code"></i></div>
-										<div class="name">Coding</div>
-									</div>
-									<ul>
-										<li>
-											<div class="name">WordPress</div>
-											<div class="progress p90">
-												<span>90%</span>
-											</div>
-										</li>
-										<li>
-											<div class="name">PHP / MYSQL</div>
-											<div class="progress p75">
-												<span>75%</span>
-											</div>
-										</li>
-										<li>
-											<div class="name">Angular / JavaScript</div>
-											<div class="progress p85">
-												<span>85%</span>
-											</div>
-										</li>
-										<li>
-											<div class="name">HTML / CSS</div>
-											<div class="progress p95">
-												<span>95%</span>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- skill item -->
-							<div class="col col-d-6 col-t-6 col-m-12 border-line-v">
-								<div class="skills-list list">
-									<div class="skill-title border-line-h">
-										<div class="icon"><i class="fa fa-list"></i></div>
-										<div class="name">Knowledge</div>
-									</div>
-									<ul>
-										<li>
-											<div class="name">Website hosting</div>
-										</li>
-										<li>
-											<div class="name">iOS and android apps</div>
-										</li>
-										<li>
-											<div class="name">Create logo design</div>
-										</li>
-										<li>
-											<div class="name">Design for print</div>
-										</li>
-										<li>
-											<div class="name">Modern and mobile-ready</div>
-										</li>
-										<li>
-											<div class="name">Advertising services include</div>
-										</li>
-										<li>
-											<div class="name">Graphics and animations</div>
-										</li>
-										<li>
-											<div class="name">Search engine marketing</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-
 							<div class="clear"></div>
 						</div>
-
 					</div>
-
-					<!--
-						Testimonials
-					-->
-					<div class="content testimonials">
-
-						<!-- title -->
-						<div class="title">Testimonials</div>
-
-						<!-- content -->
-						<div class="row testimonials-items">
-
-							<!-- client item -->
-							<div class="col col-d-12 col-t-12 col-m-12 border-line-v">
-								<div class="revs-carousel default-revs">
-									<div class="owl-carousel">
-										<div class="item">
-											<div class="revs-item">
-												<div class="text">
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-												</div>
-												<div class="user">
-													<div class="img"><img src="images/man1.jpg" alt="" /></div>
-													<div class="info">
-														<div class="name">Helen Floyd</div>
-														<div class="company">Art Director</div>
-													</div>
-													<div class="clear"></div>
-												</div>
-											</div>
-										</div>
-										<div class="item">
-											<div class="revs-item">
-												<div class="text">
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-												</div>
-												<div class="user">
-													<div class="img"><img src="images/man1.jpg" alt="" /></div>
-													<div class="info">
-														<div class="name">Robert Chase</div>
-														<div class="company">CEO</div>
-													</div>
-													<div class="clear"></div>
-												</div>
-											</div>
-										</div>
-										<div class="item">
-											<div class="revs-item">
-												<div class="text">
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-												</div>
-												<div class="user">
-													<div class="img"><img src="images/man1.jpg" alt="" /></div>
-													<div class="info">
-														<div class="name">Helen Floyd</div>
-														<div class="company">Art Director</div>
-													</div>
-													<div class="clear"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="clear"></div>
-						</div>
-
-					</div>
-
 				</div>
 			</div>
 
-			<!--
-				Card - Works
-			-->
 			<div class="card-inner" id="works-card">
 				<div class="card-wrap">
-
-					<!--
-						Works
-					-->
 					<div class="content works">
-
-						<!-- title -->
 						<div class="title">Recent Works</div>
-
-						<!-- filters -->
 						<div class="filter-menu filter-button-group">
 							<div class="f_btn active">
 								<label><input type="radio" name="fl_radio" value="grid-item" />All</label>
@@ -886,11 +828,7 @@
 								<label><input type="radio" name="fl_radio" value="design" />Content</label>
 							</div>
 						</div>
-
-						<!-- content -->
 						<div class="row grid-items border-line-v">
-
-							<!-- work item photo -->
 							<div class="col col-d-6 col-t-6 col-m-12 grid-item photo border-line-h">
 								<div class="box-item">
 									<div class="image">
@@ -907,8 +845,6 @@
 									</div>
 								</div>
 							</div>
-
-							<!-- work item video -->
 							<div class="col col-d-6 col-t-6 col-m-12 grid-item video border-line-h">
 								<div class="box-item">
 									<div class="image">
@@ -925,264 +861,46 @@
 									</div>
 								</div>
 							</div>
-
-							<!-- work item music -->
-							<div class="col col-d-6 col-t-6 col-m-12 grid-item music border-line-h">
-								<div class="box-item">
-									<div class="image">
-										<a href="https://w.soundcloud.com/player/?visual=true&url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F221650664&show_artwork=true" class="has-popup-music">
-											<img src="images/works/work3.jpg" alt="" />
-											<span class="info">
-												<span class="ion ion-music-note"></span>
-											</span>
-										</a>
-									</div>
-									<div class="desc">
-										<a href="#" class="name has-popup">Staircase</a>
-										<div class="category">Music</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- work item design -->
-							<div class="col col-d-6 col-t-6 col-m-12 grid-item design border-line-h">
-								<div class="box-item">
-									<div class="image">
-										<a href="#popup-1" class="has-popup-media">
-											<img src="images/works/work4.jpg" alt="" />
-											<span class="info">
-												<span class="ion ion-images"></span>
-											</span>
-										</a>
-									</div>
-									<div class="desc">
-										<a href="#popup-1" class="name has-popup-media">Mobile Application</a>
-										<div class="category">Content</div>
-									</div>
-									<div id="popup-1" class="popup-box mfp-fade mfp-hide">
-										<div class="content">
-											<div class="image">
-												<img src="images/works/work4.jpg" alt="">
-											</div>
-											<div class="desc">
-												<div class="post-box">
-													<h1>Mobile Application</h1>
-													<div class="blog-detail">Design</div>
-													<div class="blog-content">
-														<p>
-															So striking at of to welcomed resolved. Northward by described up household therefore
-															attention. Excellence decisively nay man yet impression for contrasted remarkably.
-														</p>
-														<p>
-															Forfeited you engrossed but gay sometimes explained. Another as studied it to evident.
-															Merry sense given he be arise. Conduct at an replied removal an amongst. Remaining
-															determine few her two cordially admitting old.
-														</p>
-														<blockquote>
-															Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-															Curae; Pellentesque suscipit.
-														</blockquote>
-														<p>
-															Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh
-															removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on.
-															Increasing sufficient everything men him admiration unpleasing sex.
-														</p>
-														<ul class="list-style">
-															<li>Greatest properly off ham exercise all.</li>
-															<li>Unsatiable invitation its possession nor off.</li>
-															<li>All difficulty estimating unreserved increasing the solicitude.</li>
-														</ul>
-														<p>
-															Unpleasant astonished an diminution up partiality. Noisy an their of meant. Death means
-															up civil do an offer wound of.
-														</p>
-													</div>
-													<a href="#" class="button">
-														<span class="text">View Project</span>
-														<span class="arrow"></span>
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- work item photo -->
-							<div class="col col-d-6 col-t-6 col-m-12 grid-item gallery border-line-h">
-								<div class="box-item">
-									<div class="image">
-										<a href="#gallery-1" class="has-popup-gallery">
-											<img src="images/works/work5.jpg" alt="" />
-											<span class="info">
-												<span class="ion ion-images"></span>
-											</span>
-										</a>
-										<div id="gallery-1" class="mfp-hide">
-											<a href="images/works/work6.jpg"></a>
-											<a href="images/works/work1.jpg"></a>
-											<a href="images/works/work5.jpg"></a>
-										</div>
-									</div>
-									<div class="desc">
-										<a href="images/works/work5.jpg" class="name has-popup-image">Gereal Travels</a>
-										<div class="category">Gallery</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- work item music -->
-							<div class="col col-d-6 col-t-6 col-m-12 grid-item music border-line-h">
-								<div class="box-item">
-									<div class="image">
-										<a href="https://w.soundcloud.com/player/?visual=true&url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F221650664&show_artwork=true" class="has-popup-music">
-											<img src="images/works/work8.jpg" alt="" />
-											<span class="info">
-												<span class="ion ion-music-note"></span>
-											</span>
-										</a>
-									</div>
-									<div class="desc">
-										<a href="#" class="name has-popup">Daylight Entrance</a>
-										<div class="category">Music</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- work item video -->
-							<div class="col col-d-6 col-t-6 col-m-12 grid-item video border-line-h">
-								<div class="box-item">
-									<div class="image">
-										<a href="https://vimeo.com/97102654" class="has-popup-video">
-											<img src="images/works/work6.jpg" alt="" />
-											<span class="info">
-												<span class="ion ion-videocamera"></span>
-											</span>
-										</a>
-									</div>
-									<div class="desc">
-										<a href="https://vimeo.com/97102654" class="name has-popup-video">Architecture</a>
-										<div class="category">Video</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- work item design -->
-							<div class="col col-d-6 col-t-6 col-m-12 grid-item design border-line-h">
-								<div class="box-item">
-									<div class="image">
-										<a href="#popup-2" class="has-popup-media">
-											<img src="images/works/work7.jpg" alt="" />
-											<span class="info">
-												<span class="ion ion-images"></span>
-											</span>
-										</a>
-									</div>
-									<div class="desc">
-										<a href="#popup-2" class="name has-popup-media">Social Website</a>
-										<div class="category">Content</div>
-									</div>
-									<div id="popup-2" class="popup-box mfp-fade mfp-hide">
-										<div class="content">
-											<div class="image">
-												<img src="images/works/work7.jpg" alt="">
-											</div>
-											<div class="desc">
-												<div class="post-box">
-													<h1>Mobile Application</h1>
-													<div class="blog-detail">Design</div>
-													<div class="blog-content">
-														<p>
-															So striking at of to welcomed resolved. Northward by described up household therefore
-															attention. Excellence decisively nay man yet impression for contrasted remarkably.
-														</p>
-														<p>
-															Forfeited you engrossed but gay sometimes explained. Another as studied it to evident.
-															Merry sense given he be arise. Conduct at an replied removal an amongst. Remaining
-															determine few her two cordially admitting old.
-														</p>
-														<blockquote>
-															Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-															Curae; Pellentesque suscipit.
-														</blockquote>
-														<p>
-															Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh
-															removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on.
-															Increasing sufficient everything men him admiration unpleasing sex.
-														</p>
-														<ul class="list-style">
-															<li>Greatest properly off ham exercise all.</li>
-															<li>Unsatiable invitation its possession nor off.</li>
-															<li>All difficulty estimating unreserved increasing the solicitude.</li>
-														</ul>
-														<p>
-															Unpleasant astonished an diminution up partiality. Noisy an their of meant. Death means
-															up civil do an offer wound of.
-														</p>
-													</div>
-													<a href="#" class="button">
-														<span class="text">View Project</span>
-														<span class="arrow"></span>
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
 							<div class="clear"></div>
 						</div>
-
 					</div>
-
 				</div>
 			</div>
 
-			<!--
-				Card - Blog
-			-->
 			<div class="card-inner blog" id="blog-card">
 				<div class="card-wrap">
-
-					<!-- Blog -->
-					<div class="content blog">
-
-						<!-- title -->
+					<!-- Vista de todas las publicaciones -->
+					<div class="content blog" id="blog-list-view">
 						<div class="title">
-							<span >Blog</span>
+							<span>Blog</span>
 						</div>
-
-						<!-- content -->
 						<div class="row border-line-v">
-							<!-- blog item -->
 							<div class="col col-d-6 col-t-6 col-m-12">
 								<div class="box-item">
 									<div class="image">
-										<a href="blog-post-new.html">
-											<img src="images/blog/blog1.jpg" alt="By spite about do of allow" />
+										<a href="#" onclick="showWindows10Tutorial(); return false;">
+											<img src="images/blog/blog3.jpg" alt="Manual de Instalación de Windows 10" />
 											<span class="info">
 												<span class="ion ion-document-text"></span>
 											</span>
 										</a>
 									</div>
 									<div class="desc">
-										<a href="blog-post-new.html">
-											<span class="date">April 28, 2020</span>
+										<a href="#" onclick="showWindows10Tutorial(); return false;">
+											<span class="date">Abril 30, 2024</span>
 										</a>
-										<a href="blog-post-new.html" class="name">By spite about do of allow</a>
+										<a href="#" onclick="showWindows10Tutorial(); return false;" class="name">Manual de Instalación de Windows 10</a>
 										<div class="text">
-											<p>Ex audire suavitate has, ei quodsi tacimates sapientem sed, pri zril ubique ut. Te cule tation munere noluisse. Enim torquatos&#8230;</p>
+											<p>Guía completa paso a paso para instalar Windows 10 desde cero...</p>
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- blog item -->
 							<div class="col col-d-6 col-t-6 col-m-12">
 								<div class="box-item">
 									<div class="image">
 										<a href="blog-post-new.html">
-											<img src="images/blog/blog2.jpg" alt="By spite about do of allow" />
+											<img src="images/blog/blog1.jpg" alt="El Futuro del Soporte Técnico" />
 											<span class="info">
 												<span class="ion ion-document-text"></span>
 											</span>
@@ -1190,92 +908,214 @@
 									</div>
 									<div class="desc">
 										<a href="blog-post-new.html">
-											<span class="date">April 28, 2020</span>
+											<span class="date">Abril 28, 2024</span>
 										</a>
-										<a href="blog-post-new.html" class="name">By spite about do of allow</a>
+										<a href="blog-post-new.html" class="name">El Futuro del Soporte Técnico en la Era Digital</a>
 										<div class="text">
-											<p>Ex audire suavitate has, ei quodsi tacimates sapientem sed, pri zril ubique ut. Te cule tation munere noluisse. Enim torquatos&#8230;</p>
+											<p>Descubre cómo la inteligencia artificial y la automatización están transformando el soporte técnico...</p>
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- blog item -->
 							<div class="col col-d-6 col-t-6 col-m-12">
 								<div class="box-item">
 									<div class="image">
-										<a href="blog-post-new.html">
-											<img src="images/blog/blog3.jpg" alt="By spite about do of allow" />
+										<a href="blog-post-2.html">
+											<img src="images/blog/blog2.jpg" alt="Mejores Prácticas en Ciberseguridad" />
 											<span class="info">
 												<span class="ion ion-document-text"></span>
 											</span>
 										</a>
 									</div>
 									<div class="desc">
-										<a href="blog-post-new.html">
-											<span class="date">April 28, 2020</span>
+										<a href="blog-post-2.html">
+											<span class="date">Abril 25, 2024</span>
 										</a>
-										<a href="blog-post-new.html" class="name">By spite about do of allow</a>
+										<a href="blog-post-2.html" class="name">Mejores Prácticas en Ciberseguridad para Empresas</a>
 										<div class="text">
-											<p>Ex audire suavitate has, ei quodsi tacimates sapientem sed, pri zril ubique ut. Te cule tation munere noluisse. Enim torquatos&#8230;</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- blog item -->
-							<div class="col col-d-6 col-t-6 col-m-12">
-								<div class="box-item">
-									<div class="image">
-										<a href="blog-post-new.html">
-											<img src="images/blog/blog1.jpg" alt="By spite about do of allow" />
-											<span class="info">
-												<span class="ion ion-document-text"></span>
-											</span>
-										</a>
-									</div>
-									<div class="desc">
-										<a href="blog-post-new.html">
-											<span class="date">April 28, 2020</span>
-										</a>
-										<a href="blog-post-new.html" class="name">By spite about do of allow</a>
-										<div class="text">
-											<p>Ex audire suavitate has, ei quodsi tacimates sapientem sed, pri zril ubique ut. Te cule tation munere noluisse. Enim torquatos&#8230;</p>
+											<p>Guía completa para proteger tu empresa de amenazas cibernéticas...</p>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="clear"></div>
 						</div>
-
-						<div class="pager">
-							<nav class="navigation pagination">
-								<div class="nav-links">
-									<span class="page-numbers current">1</span>
-									<a class="page-numbers" href="#">2</a>
-									<a class="next page-numbers" href="#">Next</a>
-								</div>
-							</nav>
-						</div>
-
 					</div>
 
+					<!-- Vista del tutorial de Windows 10 -->
+					<div class="content blog-post-content" id="windows10-tutorial-view" style="display: none;">
+						<div class="blog-header">
+							<div class="back-button">
+								<a href="#" class="button" onclick="showBlogList();">
+									<span class="icon ion-arrow-left-c"></span>
+									<span class="text">Volver al Blog</span>
+								</a>
+							</div>
+							<div class="post-meta">
+								<span class="date">Abril 30, 2024</span>
+								<span class="category">Tutoriales</span>
+								<span class="read-time">10 min de lectura</span>
+							</div>
+						</div>
+
+						<div class="post-content">
+							<h1 class="post-title">📘 Manual de Instalación de Windows 10</h1>
+							
+							<div class="featured-image">
+								<img src="images/blog/blog3.jpg" alt="Instalación de Windows 10" />
+							</div>
+
+							<div class="post-text">
+								<p>Este tutorial te guiará paso a paso para instalar Windows 10 desde cero en tu computadora. Sigue cada paso cuidadosamente para asegurar una instalación exitosa.</p>
+
+								<h2>🔹 1. Requisitos previos</h2>
+								<p>Antes de instalar, asegúrate de tener:</p>
+								<ul>
+									<li><strong>PC compatible:</strong> procesador de al menos 1 GHz, 2 GB de RAM (32 bits) o 4 GB de RAM (64 bits), 20 GB de espacio en disco.</li>
+									<li><strong>USB de 8 GB o más.</strong></li>
+									<li><strong>Archivo de instalación de Windows 10</strong> (descargado desde la web oficial de Microsoft).</li>
+									<li><strong>Clave de producto</strong> (opcional, puedes instalar sin ingresarla y activarla después).</li>
+								</ul>
+
+								<h2>🔹 2. Crear el USB booteable</h2>
+								<ol>
+									<li>Descarga la herramienta de creación de medios (Media Creation Tool) desde la web de Microsoft.</li>
+									<li>Conecta el USB a la PC.</li>
+									<li>Ejecuta la herramienta y selecciona:
+										<ul>
+											<li>"Crear medio de instalación para otro PC".</li>
+											<li>Idioma, edición (Windows 10) y arquitectura (32 o 64 bits).</li>
+											<li>Elige Unidad flash USB y espera a que termine.</li>
+										</ul>
+									</li>
+								</ol>
+								<blockquote>
+									👉 También puedes usar Rufus si prefieres mayor control sobre el USB booteable.
+								</blockquote>
+
+								<h2>🔹 3. Configurar el arranque desde USB</h2>
+								<ol>
+									<li>Conecta el USB en la computadora donde instalarás Windows.</li>
+									<li>Reinicia el equipo y entra a la BIOS/UEFI (generalmente presionando F2, DEL, ESC o F12 según la marca).</li>
+									<li>En el menú de arranque, selecciona el USB como primer dispositivo de inicio.</li>
+									<li>Guarda y reinicia.</li>
+								</ol>
+
+								<h2>🔹 4. Instalar Windows 10</h2>
+								<ol>
+									<li>Al arrancar desde el USB verás la pantalla de instalación de Windows.</li>
+									<li>Selecciona idioma, formato de hora y teclado → clic en Siguiente.</li>
+									<li>Pulsa Instalar ahora.</li>
+									<li>Si tienes clave de producto, ingrésala; si no, elige "No tengo clave".</li>
+									<li>Selecciona la edición de Windows 10 que deseas instalar.</li>
+									<li>Acepta los términos de licencia.</li>
+									<li>Elige Instalación personalizada (avanzada).</li>
+								</ol>
+
+								<h2>🔹 5. Particionar y elegir disco</h2>
+								<ol>
+									<li>Si quieres un inicio limpio, selecciona todas las particiones y elimínalas hasta tener Espacio no asignado.</li>
+									<li>Selecciona ese espacio y pulsa Siguiente (Windows creará las particiones necesarias).</li>
+								</ol>
+								<blockquote>
+									👉 Si quieres conservar datos, ten cuidado y selecciona solo la partición del sistema.
+								</blockquote>
+
+								<h2>🔹 6. Proceso de instalación</h2>
+								<ol>
+									<li>Windows copiará los archivos, instalará características y actualizaciones.</li>
+									<li>El equipo se reiniciará varias veces.</li>
+									<li>Espera a que finalice sin retirar el USB (se puede quitar cuando la PC ya reinicie en la parte de configuración inicial).</li>
+								</ol>
+
+								<h2>🔹 7. Configuración inicial</h2>
+								<ol>
+									<li>Selecciona tu región y distribución de teclado.</li>
+									<li>Conéctate a Internet (puedes omitirlo y hacerlo después).</li>
+									<li>Inicia sesión con una cuenta Microsoft o crea una cuenta local.</li>
+									<li>Configura la privacidad (puedes desactivar las opciones que no quieras).</li>
+									<li>Espera a que Windows prepare el escritorio.</li>
+								</ol>
+
+								<h2>🔹 8. Instalar controladores y actualizaciones</h2>
+								<ol>
+									<li>Abre el Administrador de dispositivos y revisa si hay controladores faltantes.</li>
+									<li>Instala los drivers de la tarjeta gráfica, red y audio (descargados desde la página oficial del fabricante).</li>
+									<li>Ejecuta Windows Update para instalar actualizaciones de seguridad.</li>
+								</ol>
+
+								<h2>🔹 9. Programas básicos recomendados</h2>
+								<div class="trends-grid">
+									<div class="trend-item">
+										<div class="trend-icon">
+											<span class="icon ion-earth"></span>
+										</div>
+										<h4>Navegador</h4>
+										<p>Google Chrome, Firefox, Edge</p>
+									</div>
+									
+									<div class="trend-item">
+										<div class="trend-icon">
+											<span class="icon ion-document-text"></span>
+										</div>
+										<h4>Oficina</h4>
+										<p>Paquete Office o LibreOffice</p>
+									</div>
+									
+									<div class="trend-item">
+										<div class="trend-icon">
+											<span class="icon ion-shield"></span>
+										</div>
+										<h4>Seguridad</h4>
+										<p>Antivirus (opcional, Windows Defender incluido)</p>
+									</div>
+								</div>
+
+								<p>También instala programas de uso personal como WinRAR, reproductores multimedia, etc.</p>
+
+								<h2>⚠️ Consejos importantes</h2>
+								<ul>
+									<li><strong>Haz una copia de seguridad</strong> de todos tus datos importantes antes de comenzar.</li>
+									<li><strong>Ten paciencia</strong> durante el proceso de instalación, puede tomar tiempo.</li>
+									<li><strong>No interrumpas</strong> la instalación una vez que haya comenzado.</li>
+									<li><strong>Mantén el USB conectado</strong> hasta que la instalación esté completamente terminada.</li>
+								</ul>
+
+								<h2>🎯 Resumen del proceso</h2>
+								<p>La instalación de Windows 10 es un proceso relativamente sencillo que se puede completar en aproximadamente 1-2 horas, dependiendo de tu hardware. Siguiendo estos pasos de manera ordenada, tendrás un sistema operativo completamente funcional y actualizado.</p>
+							</div>
+
+							<div class="post-footer">
+								<div class="tags">
+									<span class="tag">Windows 10</span>
+									<span class="tag">Instalación</span>
+									<span class="tag">Tutorial</span>
+									<span class="tag">Sistema Operativo</span>
+									<span class="tag">USB Booteable</span>
+								</div>
+								
+								<div class="share-buttons">
+									<span class="share-label">Compartir:</span>
+									<a href="#" class="share-btn facebook">
+										<span class="icon ion-social-facebook"></span>
+									</a>
+									<a href="#" class="share-btn twitter">
+										<span class="icon ion-social-twitter"></span>
+									</a>
+									<a href="#" class="share-btn linkedin">
+										<span class="icon ion-social-linkedin"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<!--
-				Card - Contacts
-			-->
 			<div class="card-inner contacts" id="contacts-card">
 				<div class="card-wrap">
-
-					<!--
-						Conacts Info
-					-->
 					<div class="content contacts">
-
-						<!-- title -->
 						<div class="title">Get in Touch</div>
-
-						<!-- content -->
 						<div class="row">
 							<div class="col col-d-12 col-t-12 col-m-12 border-line-v">
 								<div class="map" id="map"></div>
@@ -1290,18 +1130,10 @@
 							</div>
 							<div class="clear"></div>
 						</div>
-
 					</div>
 
-					<!--
-						Contact Form
-					-->
 					<div class="content contacts">
-
-						<!-- title -->
 						<div class="title">Contact Form</div>
-
-						<!-- content -->
 						<div class="row">
 							<div class="col col-d-12 col-t-12 col-m-12 border-line-v">
 								<div class="contact_form">
@@ -1337,134 +1169,79 @@
 							</div>
 							<div class="clear"></div>
 						</div>
-
 					</div>
-
 				</div>
 			</div>
-
 		</div>
 
-		<div class="s_overlay"></div>
-		<div class="content-sidebar">
-			<div class="sidebar-wrap search-form">
-				<aside id="secondary" class="widget-area">
-					<section id="search-2" class="widget widget_search">
-						<label>
-							<span class="screen-reader-text">Search for:</span>
-							<input type="search" class="search-field" placeholder="Search …" value="" name="s">
-						</label>
-						<input type="submit" class="search-submit" value="Search">
-					</section>
-					<section class="widget widget_recent_entries">
-						<h2 class="widget-title">
-							<span class="widget-title-span"><span class="first-word">Recent</span> Posts</span>
-						</h2>
-						<ul>
-							<li>
-								<a href="#">Creativity Is More Than</a>
-							</li>
-							<li>
-								<a href="#">Designing the perfect</a>
-							</li>
-							<li>
-								<a href="#">Music Player Design</a>
-							</li>
-							<li>
-								<a href="#">A Song And Dance Act</a>
-							</li>
-							<li>
-								<a href="#">By spite about do of allow</a>
-							</li>
-						</ul>
-					</section>
-					<section class="widget widget_recent_comments">
-						<h2 class="widget-title">
-							<span class="widget-title-span"><span class="first-word">Recent</span> Comments</span>
-						</h2>
-						<ul>
-							<li class="recentcomments">
-								<span class="comment-author-link">JOHN SMITH</span> on <a href="#">Creativity Is More Than</a>
-							</li>
-							<li class="recentcomments">
-								<span class="comment-author-link">ADAM SMITH</span> on <a href="#">Creativity Is More Than</a>
-							</li>
-							<li class="recentcomments">
-								<span class="comment-author-link">admin</span> on <a href="#">Designing the perfect</a>
-							</li>
-							<li class="recentcomments">
-								<span class="comment-author-link">admin</span> on <a href=#">Designing the perfect</a>
-							</li>
-							<li class="recentcomments">
-								<span class="comment-author-link">James</span> on <a href="#">Designing the perfect</a>
-							</li>
-						</ul>
-					</section>
-					<section class="widget widget_archive">
-						<h2 class="widget-title">
-							<span class="widget-title-span">
-								<span class="first-letter">Archives</span>
-							</span>
-						</h2>
-						<ul>
-							<li>
-								<a href="#">November 2018</a>
-							</li>
-						</ul>
-					</section>
-					<section class="widget widget_categories">
-						<h2 class="widget-title">
-							<span class="widget-title-span"><span class="first-letter">Categories</span></span>
-						</h2>
-						<ul>
-							<li class="cat-item cat-item-2">
-								<a href="#">Design</a>
-							</li>
-							<li class="cat-item cat-item-3">
-								<a href="#">Music</a>
-							</li>
-						</ul>
-					</section>
-					<section class="widget widget_meta">
-						<h2 class="widget-title">
-							<span class="widget-title-span"><span class="first-letter">Meta</span></span>
-						</h2>
-						<ul>
-							<li><a href="#">Log in</a></li>
-							<li><a href="#">Entries feed</a></li>
-							<li><a href="#">Comments feed</a></li>
-							<li><a href="#">WordPress.org</a></li>
-						</ul>
-					</section>
-				</aside>
-			</div>
-			<span class="close"></span>
-		</div>
-
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.validate.js"></script>
+		<script src="js/jquery.magnific-popup.js"></script>
+		<script src="js/imagesloaded.pkgd.js"></script>
+		<script src="js/isotope.pkgd.js"></script>
+		<script src="js/jquery.slimscroll.js"></script>
+		<script src="js/owl.carousel.js"></script>
+		<script src="js/typed.js"></script>
+		<script src="https://use.fontawesome.com/8da76d029b.js"></script>
+		<script src="js/scripts.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+		
+		<!-- Funciones para el blog con animaciones -->
+		<script>
+			function showWindows10Tutorial() {
+				const blogListView = document.getElementById('blog-list-view');
+				const tutorialView = document.getElementById('windows10-tutorial-view');
+				
+				// Ocultar lista inmediatamente sin animación
+				blogListView.style.display = 'none';
+				
+				// Mostrar tutorial y aplicar animación de entrada
+				tutorialView.style.display = 'block';
+				tutorialView.classList.add('slide-in');
+			}
+			
+			function showBlogList() {
+				const blogListView = document.getElementById('blog-list-view');
+				const tutorialView = document.getElementById('windows10-tutorial-view');
+				
+				// Ocultar tutorial inmediatamente sin animación
+				tutorialView.style.display = 'none';
+				
+				// Mostrar lista y aplicar animación de entrada
+				blogListView.style.display = 'block';
+				blogListView.classList.add('slide-in');
+			}
+			
+			// Regresar automáticamente a las publicaciones cuando se cambia de pestaña
+			document.addEventListener('visibilitychange', function() {
+				if (!document.hidden) {
+					// Cuando regresas a la pestaña, mostrar la lista de publicaciones
+					const blogListView = document.getElementById('blog-list-view');
+					const tutorialView = document.getElementById('windows10-tutorial-view');
+					
+					// Ocultar tutorial si está visible
+					if (tutorialView.style.display === 'block') {
+						tutorialView.style.display = 'none';
+						blogListView.style.display = 'block';
+					}
+				}
+			});
+			
+			// Limpiar clases de animación después de completarse
+			document.addEventListener('DOMContentLoaded', function() {
+				const blogListView = document.getElementById('blog-list-view');
+				const tutorialView = document.getElementById('windows10-tutorial-view');
+				
+				// Observar cuando terminan las animaciones
+				blogListView.addEventListener('animationend', function() {
+					this.classList.remove('slide-in');
+				});
+				
+				tutorialView.addEventListener('animationend', function() {
+					this.classList.remove('slide-in');
+				});
+			});
+		</script>
 	</div>
-
-	<!--
-		jQuery Scripts
-	-->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery.validate.js"></script>
-	<script src="js/jquery.magnific-popup.js"></script>
-	<script src="js/imagesloaded.pkgd.js"></script>
-	<script src="js/isotope.pkgd.js"></script>
-	<script src="js/jquery.slimscroll.js"></script>
-	<script src="js/owl.carousel.js"></script>
-	<script src="js/typed.js"></script>
-	<script src="https://use.fontawesome.com/8da76d029b.js"></script>
-
-	<!--
-		Main Scripts
-	-->
-	<script src="js/scripts.js"></script>
-
-	<!--
-		Google map api
-	-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
-
 </body>
 </html>
