@@ -749,6 +749,8 @@
 	font-size: 0;
 }
 
+/*Linea vertical*/
+/*
 .service-items.border-line-v:after {
 	margin: 0 0 0 -1px;
 	content: '';
@@ -761,7 +763,7 @@
 	background: -webkit-radial-gradient(top, ellipse cover, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
 	background: radial-gradient(ellipse at top, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
 }
-
+*/
 .service-items .service-item {
 	text-align: left;
 }
@@ -800,9 +802,7 @@
 }
 
 @media (max-width: 560px) {
-	.service-items.border-line-v:after {
-		display: none;
-	}
+
 
 	.service-items .col:after {
 		content: '';

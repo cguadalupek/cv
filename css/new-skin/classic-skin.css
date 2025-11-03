@@ -66,6 +66,7 @@
 
 .blog-single .info-list ul li:last-child, .content.contacts .info-list ul li:last-child {
     padding-bottom: 5px;
+	width: auto;
 }
 
 .blog-single .info-list ul li:last-child:before, .content.contacts .info-list ul li:last-child:before {
