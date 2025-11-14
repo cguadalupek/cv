@@ -606,7 +606,7 @@ input[type="file"] {
 	.header .top-menu ul li:first-child a {
 		border-radius: 4px 0 0 4px;
 		-moz-border-radius: 4px 0 0 4px;
-		-webkit-border-radius: 4px 0 0 4px;
+		-webkit-border-radius: 0px 0 0 0px;
 		-khtml-border-radius: 4px 0 0 4px;
 	}
 	.header .top-menu ul li:last-child a {
@@ -699,7 +699,7 @@ input[type="file"] {
 	.header .top-menu ul li:last-child a {
 		border-radius: 0 0 4px 0;
 		-moz-border-radius: 0 0 4px 0;
-		-webkit-border-radius: 0 0 4px 0;
+		-webkit-border-radius: 0 0 0px 0;
 		-khtml-border-radius: 0 0 4px 0;
 	}
 	.header .top-menu ul {
