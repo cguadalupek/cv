@@ -5,6 +5,146 @@
 	line-height: 60px;
 }
 
+/* Servicios: viñetas con guion '-' en vez de punto */
+.service-items .service-item .desc p {
+	margin: 0 0 0.75rem 0 !important;
+}
+
+.service-items .service-item .desc ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.service-items .service-item .desc li {
+	position: relative;
+	padding-left: 1.15rem;
+	margin: 0.35rem 0;
+}
+
+.service-items .service-item .desc li::before {
+	content: "-";
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: #78cc6d;
+	font-weight: 700;
+}
+
+/* Hacer el layout más grande (menos “fondo”, más contenido) */
+body {
+	font-size: 18px;
+}
+
+.container {
+	/* Quita el tope que achica mucho en pantallas grandes */
+	max-height: none;
+	max-width: 1400px;
+	height: 90vh;
+	margin: 5vh 4vw;
+}
+
+/* Tarjeta izquierda (perfil) más ancha y card derecha alineada */
+.card-started {
+	width: 560px;
+}
+
+.card-inner {
+	left: 640px;
+}
+
+.card-started .profile {
+	padding: 56px;
+}
+
+.card-started .profile .title {
+	font-size: 40px;
+}
+
+.card-started .profile .subtitle,
+.card-started .profile .typed-cursor {
+	font-size: 18px;
+	line-height: 24px;
+	height: 24px;
+}
+
+.card-inner .card-wrap {
+	padding: 50px;
+}
+
+.content .title {
+	font-size: 28px;
+}
+
+.resume-item .name {
+	font-size: 18px;
+}
+
+/* Cards Técnicas (Habilidades) */
+.skills-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 14px;
+}
+
+.skill-card {
+	background: rgba(255, 255, 255, 0.92);
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: 14px;
+	padding: 16px 14px;
+	box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+}
+
+.skill-card-title {
+	font-weight: 800;
+	color: #323232;
+	font-size: 15px;
+	line-height: 1.25;
+	margin-bottom: 8px;
+}
+
+.skill-card-body p {
+	margin: 0 0 10px 0 !important;
+	font-size: 13.5px;
+	line-height: 1.6;
+	color: #646464;
+}
+
+.skill-card-body ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.skill-card-body li {
+	position: relative;
+	padding-left: 1.05rem;
+	margin: 0.35rem 0;
+	font-size: 13.5px;
+	color: #646464;
+}
+
+.skill-card-body li::before {
+	content: "-";
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: #78cc6d;
+	font-weight: 800;
+}
+
+@media (max-width: 1100px) {
+	.skills-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 560px) {
+	.skills-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
 .info-list a {
 	color: inherit;
 	text-decoration: underline;
