@@ -32,52 +32,84 @@
 }
 
 /* Hacer el layout más grande (menos “fondo”, más contenido) */
-body {
-	font-size: 18px;
+@media (min-width: 1024px) {
+	body {
+		font-size: 18px;
+	}
+
+	.container {
+		/* Quita el tope que achica mucho en pantallas grandes */
+		max-height: none;
+		max-width: 1400px;
+		height: 90vh;
+		margin: 5vh 4vw;
+	}
+
+	/* Tarjeta izquierda (perfil) más ancha y card derecha alineada */
+	.card-started {
+		width: 560px;
+	}
+
+	.card-inner {
+		left: 640px;
+	}
+
+	.card-started .profile {
+		padding: 56px;
+	}
+
+	.card-started .profile .title {
+		font-size: 40px;
+	}
+
+	.card-started .profile .subtitle,
+	.card-started .profile .typed-cursor {
+		font-size: 18px;
+		line-height: 24px;
+		height: 24px;
+	}
+
+	.card-inner .card-wrap {
+		padding: 50px;
+	}
+
+	.content .title {
+		font-size: 28px;
+	}
+
+	.resume-item .name {
+		font-size: 18px;
+	}
 }
 
-.container {
-	/* Quita el tope que achica mucho en pantallas grandes */
-	max-height: none;
-	max-width: 1400px;
-	height: 90vh;
-	margin: 5vh 4vw;
-}
+@media (max-width: 1023px) {
+	/* En tablet/móvil el template apila cards; no lo pisamos */
+	body {
+		font-size: 16px;
+	}
 
-/* Tarjeta izquierda (perfil) más ancha y card derecha alineada */
-.card-started {
-	width: 560px;
-}
+	.container {
+		height: auto;
+		max-height: none;
+		max-width: 540px; /* consistente con basic.css */
+		margin: 0 auto;
+	}
 
-.card-inner {
-	left: 640px;
-}
+	.card-started {
+		width: 100%;
+	}
 
-.card-started .profile {
-	padding: 56px;
-}
+	.card-inner {
+		left: 0;
+	}
 
-.card-started .profile .title {
-	font-size: 40px;
-}
+	.card-started .profile {
+		padding: 135px 25px 25px 25px;
+	}
 
-.card-started .profile .subtitle,
-.card-started .profile .typed-cursor {
-	font-size: 18px;
-	line-height: 24px;
-	height: 24px;
-}
-
-.card-inner .card-wrap {
-	padding: 50px;
-}
-
-.content .title {
-	font-size: 28px;
-}
-
-.resume-item .name {
-	font-size: 18px;
+	.card-inner .card-wrap {
+		padding: 30px;
+	}
 }
 
 /* Cards Técnicas (Habilidades) */
@@ -170,4 +202,21 @@ body {
 .text-muted {
 	opacity: 0.75;
 	font-size: 0.92em;
+}
+
+/* Guardrails responsive: evita scroll horizontal en móvil */
+@media (max-width: 560px) {
+	html, body {
+		overflow-x: hidden;
+	}
+
+	/* Menú superior: un poco más compacto para que no “apriete” */
+	.header .top-menu ul li a .link {
+		font-size: 10px;
+		letter-spacing: 0;
+	}
+
+	.header .top-menu ul li a .icon {
+		font-size: 18px;
+	}
 }
