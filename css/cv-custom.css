@@ -292,6 +292,20 @@
 	font-size: 14px;
 }
 
+.page.new-skin .content.works.works-projects .box-item .desc .name {
+	font-size: 20px;
+	line-height: 1.3;
+}
+
+.page.new-skin .content.works.works-projects .box-item .desc .category {
+	font-size: 15px;
+	line-height: 1.45;
+}
+
+.page.new-skin #works-card .content.works.works-projects .box-item .image {
+	min-height: 200px;
+}
+
 .content.works.works-projects .box-item .image .project-card-hit img {
 	transition: transform 0.6s ease;
 	transform: scale(1);
@@ -340,11 +354,16 @@
 	right: auto !important;
 }
 
-/* Misma rejilla y mismas celdas en #blog-card y #works-card (ancho/alto de track unificado) */
-.page.new-skin #blog-card .row > .col.col-d-12,
-.page.new-skin #works-card .row > .col.col-d-12 {
+/* Misma rejilla en #blog-card y #works-card; proyectos con celdas un poco más amplias */
+.page.new-skin #blog-card .row > .col.col-d-12 {
 	padding-left: 4px !important;
 	padding-right: 4px !important;
+	box-sizing: border-box;
+}
+
+.page.new-skin #works-card .row > .col.col-d-12 {
+	padding-left: 6px !important;
+	padding-right: 6px !important;
 	box-sizing: border-box;
 }
 
@@ -364,6 +383,12 @@
 	padding-bottom: 12px;
 	font-size: 16px;
 	box-sizing: border-box;
+}
+
+.page.new-skin #works-card .grid-items.row {
+	row-gap: 52px !important;
+	column-gap: 24px !important;
+	padding-bottom: 20px;
 }
 
 .page.new-skin #blog-card .grid-items.row > .grid-item,
@@ -567,6 +592,18 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 	font-weight: 600;
 }
 
+#project-popup-blog-body a {
+	color: #ff9800;
+	font-weight: 500;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	word-break: break-word;
+}
+
+#project-popup-blog-body a:hover {
+	color: #ffb74d;
+}
+
 .project-popup-body {
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
@@ -736,11 +773,20 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 	background: linear-gradient(135deg, #1a1a1f 0%, #ff6f00 95%);
 }
 
-/* Mismo tamaño de bloque de texto en blog y proyectos (dentro de #blog-card / #works-card) */
-.page.new-skin #blog-card .blog-card-desc,
-.page.new-skin #works-card .box-item .desc {
+.blog-card-visual--win10 {
+	background: linear-gradient(135deg, #171b22 0%, #0d47a1 55%, #1565c0 100%);
+}
+
+/* Blog: bloque de texto compacto; proyectos: más aire bajo la miniatura */
+.page.new-skin #blog-card .blog-card-desc {
 	padding: 16px 14px 16px;
 	min-height: 120px;
+	box-sizing: border-box;
+}
+
+.page.new-skin #works-card .box-item .desc {
+	padding: 18px 16px 18px;
+	min-height: 150px;
 	box-sizing: border-box;
 }
 

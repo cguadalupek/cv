@@ -734,6 +734,18 @@ $(function () {
 			youtubeLead: '',
 			youtubeVideoId: 'jbSY5f1Jeu8',
 			youtubeEmbedQs: 'start=1&rel=0'
+		},
+		win10: {
+			meta: 'Tutorial · Windows · Instalación',
+			title: 'Cómo instalar Windows 10 por tu cuenta',
+			bodyHtml:
+				'<p>Guía en video para preparar el medio de instalación (USB), ajustes de BIOS/UEFI, particiones y el asistente paso a paso.</p>' +
+				'<p>Autor del tutorial en Odysee: Capitán Tutos. ' +
+				'<a href="https://odysee.com/@Capit%C3%A1nTutos:2/instalacion-windows10:a" target="_blank" rel="noopener noreferrer">Abrir en Odysee</a>.</p>',
+			embedIframeSrc: 'https://odysee.com/$/embed/instalacion-windows10:a',
+			embedIframeTitle: 'Instalación Windows 10 (Odysee)',
+			videoSectionTitle: 'Video',
+			youtubeLead: 'Reproductor embebido (Odysee), mismo contenido que el enlace de arriba.'
 		}
 	};
 
@@ -742,24 +754,30 @@ $(function () {
 		var $ytLead = $('#project-popup-youtube-lead');
 		var $ytWrap = $('#project-popup-video-wrap');
 		var $ytFrame = $('#project-popup-youtube-iframe');
-		var showYt = isBlog
-			? !!(d.youtube || d.youtubeVideoId)
-			: (!d.repo && (d.youtube || d.youtubeVideoId));
-		if (showYt) {
+		var $ytH3 = $ytBlock.find('.project-popup-h3').first();
+		var showVideo = isBlog
+			? !!(d.youtube || d.youtubeVideoId || d.embedIframeSrc)
+			: (!d.repo && (d.youtube || d.youtubeVideoId || d.embedIframeSrc));
+		if (showVideo) {
+			$ytH3.text(d.videoSectionTitle || 'YouTube');
 			var leadText = d.youtubeLead != null ? d.youtubeLead : 'Más detalle en mi canal de YouTube.';
 			$ytLead.text(leadText);
 			$ytLead.css('display', String(leadText).trim() !== '' ? '' : 'none');
 			if (d.youtubeVideoId) {
-				$ytFrame.attr('src', buildYoutubeEmbedSrc(d.youtubeVideoId, d.youtubeEmbedQs));
+				$ytFrame.attr('title', 'Video de YouTube').attr('src', buildYoutubeEmbedSrc(d.youtubeVideoId, d.youtubeEmbedQs));
+				$ytWrap.prop('hidden', false);
+			} else if (d.embedIframeSrc) {
+				$ytFrame.attr('title', d.embedIframeTitle || 'Video embebido').attr('src', d.embedIframeSrc);
 				$ytWrap.prop('hidden', false);
 			} else {
-				$ytFrame.attr('src', '');
+				$ytFrame.attr('src', '').attr('title', 'Reproductor de video');
 				$ytWrap.prop('hidden', true);
 			}
 			$ytBlock.show();
 		} else {
-			$ytFrame.attr('src', '');
+			$ytFrame.attr('src', '').attr('title', 'Reproductor de video');
 			$ytWrap.prop('hidden', true);
+			$ytH3.text('YouTube');
 			$ytLead.css('display', '');
 			$ytBlock.hide();
 		}
@@ -821,6 +839,9 @@ $(function () {
 				youtubeLead: b.youtubeLead,
 				youtubeVideoId: b.youtubeVideoId,
 				youtubeEmbedQs: b.youtubeEmbedQs,
+				embedIframeSrc: b.embedIframeSrc,
+				embedIframeTitle: b.embedIframeTitle,
+				videoSectionTitle: b.videoSectionTitle,
 				repo: null
 			},
 			true
