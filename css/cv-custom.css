@@ -252,19 +252,44 @@
 	transform: translateY(-2px);
 }
 
-.content.works.works-projects .box-item .image,
-.content.works.works-projects .box-item .image .project-card-hit,
-.content.works.works-projects .box-item .image img {
+/* Miniatura de proyecto 16:9 (más ancha, menos “cuadrada”) */
+.content.works.works-projects .box-item .image {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	min-height: 0;
+	overflow: hidden;
+	border-radius: 14px;
+}
+
+.content.works.works-projects .box-item .image .project-card-hit {
 	display: block;
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
 	border-radius: 14px;
 	overflow: hidden;
+}
+
+.content.works.works-projects .box-item .image img {
+	display: block;
+	position: absolute;
+	inset: 0;
 	width: 100%;
-	height: auto;
+	height: 100%;
+	object-fit: cover;
 }
 
 .content.works.works-projects .box-item .desc .name {
 	display: block;
 	cursor: pointer;
+	font-size: 18px;
+	line-height: 1.35;
+}
+
+.content.works.works-projects .box-item .desc .category {
+	font-size: 14px;
 }
 
 .content.works.works-projects .box-item .image .project-card-hit img {
@@ -294,6 +319,101 @@
 	border: 1px solid rgba(255, 152, 0, 0.45);
 	border-radius: 999px;
 	background: rgba(255, 152, 0, 0.1);
+}
+
+/*
+ * Anular estilos inline de Isotope (position:absolute, height fija) si alguna vez se inicializó sobre estos grids.
+ * Blog y Proyectos usan solo CSS Grid.
+ */
+.page.new-skin .content.works.works-projects .grid-items.row,
+.page.new-skin .content.blog.blog-cards-grid .grid-items.row {
+	position: relative !important;
+	height: auto !important;
+	min-height: 0 !important;
+}
+
+.page.new-skin .content.works.works-projects .grid-items.row > .grid-item,
+.page.new-skin .content.blog.blog-cards-grid .grid-items.row > .grid-item {
+	position: relative !important;
+	left: auto !important;
+	top: auto !important;
+	right: auto !important;
+}
+
+/* Misma rejilla y mismas celdas en #blog-card y #works-card (ancho/alto de track unificado) */
+.page.new-skin #blog-card .row > .col.col-d-12,
+.page.new-skin #works-card .row > .col.col-d-12 {
+	padding-left: 4px !important;
+	padding-right: 4px !important;
+	box-sizing: border-box;
+}
+
+.page.new-skin #blog-card .grid-items.row,
+.page.new-skin #works-card .grid-items.row {
+	display: grid !important;
+	grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	grid-auto-rows: minmax(0, auto);
+	align-items: stretch;
+	justify-items: stretch;
+	row-gap: 40px !important;
+	column-gap: 18px !important;
+	width: 100% !important;
+	max-width: 100%;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	padding-bottom: 12px;
+	font-size: 16px;
+	box-sizing: border-box;
+}
+
+.page.new-skin #blog-card .grid-items.row > .grid-item,
+.page.new-skin #works-card .grid-items.row > .grid-item {
+	display: flex !important;
+	align-self: stretch;
+	justify-self: stretch;
+	width: 100% !important;
+	min-width: 0 !important;
+	max-width: none !important;
+	float: none !important;
+	vertical-align: unset;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	padding-top: 0;
+	padding-bottom: 0;
+	box-sizing: border-box;
+}
+
+.page.new-skin #blog-card .grid-items.row > .grid-item > .blog-card,
+.page.new-skin #works-card .grid-items.row > .grid-item > .box-item {
+	width: 100%;
+	min-width: 0;
+	box-sizing: border-box;
+}
+
+@media (max-width: 400px) {
+	.page.new-skin #blog-card .grid-items.row,
+	.page.new-skin #works-card .grid-items.row {
+		grid-template-columns: 1fr !important;
+	}
+}
+
+.content.works.works-projects .box-item {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	min-height: 0;
+}
+
+.content.works.works-projects .box-item .image {
+	flex-shrink: 0;
+}
+
+.content.works.works-projects .box-item .desc {
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	min-height: 0;
 }
 
 /* Popup de proyecto: overlay + caja centrada (fondo plomo, acento naranja) */
@@ -328,8 +448,8 @@
 	position: relative;
 	z-index: 1;
 	width: 100%;
-	max-width: 720px;
-	max-height: min(92vh, 860px);
+	max-width: 900px;
+	max-height: min(94vh, 940px);
 	display: flex;
 	flex-direction: column;
 	background: linear-gradient(180deg, #6a6a72 0%, #585860 40%, #4e4e56 100%);
@@ -354,17 +474,20 @@ body.project-popup-locked {
 .project-popup-header {
 	position: relative;
 	flex-shrink: 0;
-	min-height: 40px;
-	padding: 8px 14px 6px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-start;
+	padding: 8px 12px 14px;
 	background: rgba(0, 0, 0, 0.12);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 /* Anula estilos globales de basic.css (button 60px, borde inferior verde al hover) */
 button.project-popup-close {
-	position: absolute;
-	top: 8px;
-	right: 10px;
+	position: relative;
+	top: 0;
+	right: 0;
+	flex-shrink: 0;
 	width: 34px;
 	height: 34px;
 	padding: 0;
@@ -447,14 +570,16 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 .project-popup-body {
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
-	padding: 18px 26px 26px 26px;
+	padding: 22px 30px 30px 30px;
 	flex: 1;
 	min-height: 0;
+	font-size: clamp(15px, 0.35vw + 14px, 16px);
+	line-height: 1.6;
 }
 
 .project-popup-kicker {
 	margin: 0 0 6px 0;
-	font-size: 12px;
+	font-size: 0.8125em;
 	font-weight: 600;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
@@ -464,7 +589,7 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 .project-popup-title {
 	margin: 0 0 18px 0;
 	padding-bottom: 12px;
-	font-size: 21px;
+	font-size: 1.5em;
 	font-weight: 600;
 	line-height: 1.25;
 	color: rgba(255, 255, 255, 0.96);
@@ -477,7 +602,7 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 
 .project-popup-h3 {
 	margin: 0 0 6px 0;
-	font-size: 12px;
+	font-size: 0.8125em;
 	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: 0.07em;
@@ -486,7 +611,7 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 
 .project-popup-text {
 	margin: 0;
-	font-size: 14px;
+	font-size: 1em;
 	line-height: 1.65;
 	color: rgba(255, 255, 255, 0.88);
 }
@@ -501,7 +626,7 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 	position: relative;
 	padding-left: 1rem;
 	margin: 0.35rem 0;
-	font-size: 14px;
+	font-size: 1em;
 	line-height: 1.5;
 	color: rgba(255, 255, 255, 0.88);
 }
@@ -517,8 +642,7 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 	background: #ff9800;
 }
 
-.project-popup-repo-wrap .project-popup-text a,
-.project-popup-youtube-wrap .project-popup-text a {
+.project-popup-repo-wrap .project-popup-text a {
 	color: #ff9800;
 	font-weight: 500;
 	text-decoration: underline;
@@ -528,56 +652,6 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 
 .project-popup-youtube-lead {
 	margin-bottom: 10px !important;
-}
-
-.project-popup-yt-thumb {
-	display: block;
-	position: relative;
-	margin: 14px 0 16px 0;
-	border-radius: 12px;
-	overflow: hidden;
-	border: 1px solid rgba(255, 255, 255, 0.12);
-	box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.project-popup-yt-thumb:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
-}
-
-.project-popup-yt-thumb img {
-	display: block;
-	width: 100%;
-	height: auto;
-}
-
-.project-popup-yt-thumb-play {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	width: 64px;
-	height: 64px;
-	margin: -32px 0 0 -32px;
-	border-radius: 50%;
-	background: rgba(0, 0, 0, 0.45);
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-	border: 2px solid rgba(255, 255, 255, 0.85);
-}
-
-.project-popup-yt-thumb-play::after {
-	content: "";
-	position: absolute;
-	left: 54%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	border-style: solid;
-	border-width: 10px 0 10px 16px;
-	border-color: transparent transparent transparent rgba(255, 255, 255, 0.95);
-}
-
-.project-popup-youtube-btn-wrap {
-	margin-top: 6px;
 }
 
 .project-popup-video {
@@ -601,27 +675,9 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 	border: 0;
 }
 
-.project-popup-youtube-btn {
-	display: inline-block;
-	margin-top: 4px;
-	padding: 10px 16px;
-	border-radius: 10px;
-	background: rgba(255, 152, 0, 0.2);
-	border: 1px solid rgba(255, 152, 0, 0.45);
-	text-decoration: none !important;
-	color: #fff !important;
-	font-weight: 600;
-	font-size: 13px;
-	transition: background 0.2s ease;
-}
-
-.project-popup-youtube-btn:hover {
-	background: rgba(255, 152, 0, 0.35);
-}
-
 /* —— Blog en cuadros (estilo proyectos) —— */
 .content.blog.blog-cards-grid .grid-items {
-	margin-top: 4px;
+	margin-top: 8px;
 }
 
 .blog-card {
@@ -653,7 +709,9 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 .blog-card-visual {
 	display: block;
 	position: relative;
-	min-height: 148px;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	min-height: 0;
 	overflow: hidden;
 	text-decoration: none;
 }
@@ -678,89 +736,45 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 	background: linear-gradient(135deg, #1a1a1f 0%, #ff6f00 95%);
 }
 
+/* Mismo tamaño de bloque de texto en blog y proyectos (dentro de #blog-card / #works-card) */
+.page.new-skin #blog-card .blog-card-desc,
+.page.new-skin #works-card .box-item .desc {
+	padding: 16px 14px 16px;
+	min-height: 120px;
+	box-sizing: border-box;
+}
+
 .blog-card-visual-inner {
 	position: absolute;
-	left: 20px;
-	bottom: 18px;
-	font-size: 26px;
+	left: 22px;
+	bottom: 20px;
+	font-size: 30px;
 	font-weight: 700;
 	color: rgba(255, 255, 255, 0.95);
 	text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
-.blog-card-visual--thumb {
-	min-height: 0;
-	background: #000;
-}
-
-.blog-card-visual--thumb img {
-	display: block;
-	width: 100%;
-	height: auto;
-	transition: transform 0.45s ease;
-}
-
-.blog-card:hover .blog-card-visual--thumb img {
-	transform: scale(1.04);
-}
-
-.blog-card-play {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	width: 58px;
-	height: 58px;
-	margin: -29px 0 0 -29px;
-	border-radius: 50%;
-	background: rgba(0, 0, 0, 0.42);
-	border: 2px solid rgba(255, 255, 255, 0.9);
-	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
-	pointer-events: none;
-}
-
-.blog-card-play::after {
-	content: "";
-	position: absolute;
-	left: 54%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	border-style: solid;
-	border-width: 9px 0 9px 14px;
-	border-color: transparent transparent transparent #fff;
-}
-
-.blog-card-play--small {
-	width: 44px;
-	height: 44px;
-	margin: -22px 0 0 -22px;
-}
-
-.blog-card-play--small::after {
-	border-width: 7px 0 7px 11px;
-}
-
 .blog-card-desc {
-	padding: 16px 16px 18px;
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	min-height: 88px;
+	min-height: 0;
 }
 
 .blog-card-meta {
-	font-size: 11px;
+	font-size: 12px;
 	font-weight: 600;
 	letter-spacing: 0.06em;
 	text-transform: uppercase;
 	color: rgba(255, 152, 0, 0.92);
-	margin-bottom: 6px;
+	margin-bottom: 8px;
 }
 
 .blog-card-title {
 	margin: 0;
-	font-size: 17px;
+	font-size: 18px;
 	font-weight: 600;
-	line-height: 1.3;
+	line-height: 1.32;
 	flex: 1;
 }
 
@@ -777,75 +791,6 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 
 .js-blog-card:hover .blog-card-title span {
 	color: #ff9800;
-}
-
-.blog-card-excerpt {
-	margin: 0 0 14px 0;
-	font-size: 14px;
-	line-height: 1.6;
-	color: rgba(255, 255, 255, 0.68);
-	flex: 1;
-}
-
-.blog-card-excerpt strong {
-	color: rgba(255, 255, 255, 0.85);
-	font-weight: 600;
-}
-
-.blog-card-yt-footer {
-	display: inline-flex;
-	align-items: center;
-	gap: 8px;
-	margin-top: auto;
-	padding: 8px 12px;
-	border-radius: 10px;
-	background: rgba(255, 152, 0, 0.12);
-	border: 1px solid rgba(255, 152, 0, 0.35);
-	color: #fff !important;
-	font-size: 13px;
-	font-weight: 600;
-	text-decoration: none !important;
-	transition: background 0.2s ease;
-}
-
-.blog-card-yt-footer:hover {
-	background: rgba(255, 152, 0, 0.22);
-}
-
-.blog-card-yt-icon {
-	font-size: 18px;
-	color: #ff9800;
-}
-
-.blog-card-yt-thumb-link {
-	display: block;
-	position: relative;
-	margin-top: 4px;
-	border-radius: 10px;
-	overflow: hidden;
-	border: 1px solid rgba(255, 255, 255, 0.12);
-	text-decoration: none;
-	transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.blog-card-yt-thumb-link:hover {
-	box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
-	transform: translateY(-2px);
-}
-
-.blog-card-yt-thumb-link img {
-	display: block;
-	width: 100%;
-	height: auto;
-}
-
-.blog-card-yt-thumb-label {
-	display: block;
-	padding: 10px 12px;
-	font-size: 13px;
-	font-weight: 600;
-	color: rgba(255, 255, 255, 0.92);
-	background: rgba(0, 0, 0, 0.35);
 }
 
 @media (max-width: 560px) {

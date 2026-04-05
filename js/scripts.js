@@ -308,23 +308,29 @@ $(function () {
 
 
 	/*
-		Initialize Portfolio
+		Initialize Portfolio (Isotope)
+		No aplicar a Blog ni Proyectos personalizados: usan CSS Grid; Isotope fuerza position:absolute y una sola columna.
 	*/
-	var $container = $('.grid-items');
-	$container.imagesLoaded(function() {
-		$container.isotope({
-			percentPosition: true,
-			itemSelector: '.grid-item'
+	var $container = $('.grid-items').not('.content.works.works-projects .grid-items, .content.blog.blog-cards-grid .grid-items');
+	if ($container.length) {
+		$container.imagesLoaded(function() {
+			$container.isotope({
+				percentPosition: true,
+				itemSelector: '.grid-item'
+			});
 		});
-	});
+	}
 
 
 	/*
 		Filter items on button click
 	*/
-	$('.filter-button-group').on( 'click', '.f_btn', function() {
+	$('.filter-button-group').on('click', '.f_btn', function() {
+		if (!$container.length) {
+			return;
+		}
 		var filterValue = $(this).find('input').val();
-		$container.isotope({ filter: '.'+filterValue });
+		$container.isotope({ filter: '.' + filterValue });
 		$('.filter-button-group .f_btn').removeClass('active');
 		$(this).addClass('active');
 	});
@@ -609,19 +615,21 @@ $(function () {
 	*/
 	var CV_YT_CHANNEL = 'https://www.youtube.com/@kevin_carmen';
 
-	function youtubeVideoIdFromUrl(url) {
-		if (!url || typeof url !== 'string') {
-			return '';
+	function buildYoutubeEmbedSrc(videoId, embedQs) {
+		var qs = (embedQs || 'rel=0').replace(/^\?/, '');
+		if (!/(^|&)playsinline=/.test(qs)) {
+			qs = qs ? qs + '&playsinline=1' : 'playsinline=1';
 		}
-		var m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/);
-		return m ? m[1] : '';
-	}
-
-	function youtubeThumbVideoId(d) {
-		if (d.youtubeVideoId) {
-			return d.youtubeVideoId;
+		if (!/(^|&)modestbranding=/.test(qs)) {
+			qs += '&modestbranding=1';
 		}
-		return youtubeVideoIdFromUrl(d.youtube || '');
+		try {
+			var o = window.location.origin;
+			if (o && /^https?:\/\//i.test(o)) {
+				qs += '&origin=' + encodeURIComponent(o);
+			}
+		} catch (e) {}
+		return 'https://www.youtube-nocookie.com/embed/' + videoId + '?' + qs;
 	}
 
 	var CV_PROJECTS = {
@@ -692,8 +700,7 @@ $(function () {
 			body: 'Pasos y buenas prácticas para levantar Proxmox VE en tu servidor o PC, redes y almacenamiento inicial.',
 			youtube: CV_YT_CHANNEL,
 			youtubeLead: 'Tutorial completo en mi canal de YouTube.',
-			youtubeVideoId: '',
-			youtubeLinkLabel: 'Ver @kevin_carmen en YouTube'
+			youtubeVideoId: ''
 		},
 		navidrome: {
 			meta: 'Docker · Música',
@@ -701,8 +708,7 @@ $(function () {
 			body: 'Biblioteca auto-hospedada estilo streaming: contenedor, volúmenes y acceso desde la red local.',
 			youtube: CV_YT_CHANNEL,
 			youtubeLead: 'Despliegue y uso en video en el canal.',
-			youtubeVideoId: '',
-			youtubeLinkLabel: 'Ver @kevin_carmen en YouTube'
+			youtubeVideoId: ''
 		},
 		omv: {
 			meta: 'NAS · Almacenamiento',
@@ -710,8 +716,7 @@ $(function () {
 			body: 'NAS ligero sobre Debian: discos, usuarios, SMB/NFS y primeros servicios para tu homelab.',
 			youtube: CV_YT_CHANNEL,
 			youtubeLead: 'Instalación y consejos en YouTube.',
-			youtubeVideoId: '',
-			youtubeLinkLabel: 'Ver @kevin_carmen en YouTube'
+			youtubeVideoId: ''
 		},
 		servidor: {
 			meta: 'DIY · Servidor',
@@ -719,48 +724,33 @@ $(function () {
 			body: 'Elegir placa, RAM, fuente, refrigeración y caja para un equipo estable 24/7 sin gastar de más.',
 			youtube: CV_YT_CHANNEL,
 			youtubeLead: 'Montaje y pruebas en el canal.',
-			youtubeVideoId: '',
-			youtubeLinkLabel: 'Ver @kevin_carmen en YouTube'
+			youtubeVideoId: ''
 		},
 		womic: {
-			meta: 'Tutorial · Audio',
+			meta: 'Tutorial · Audio · Wo Mic',
 			title: 'Convertir tu celular en micrófono',
-			bodyHtml: '<strong>Wo Mic</strong> es una app que convierte tu Android en micrófono inalámbrico para el PC vía Wi‑Fi o USB: útil para llamadas, streaming o cuando no tienes mic a mano. En el video repaso la idea, la instalación básica y cómo enlazarlo con Windows.',
-			youtube: 'https://www.youtube.com/watch?v=jbSY5f1Jeu8&t=35s',
+			bodyHtml: '<strong>Wo Mic</strong> permite usar tu Android como micrófono en el PC por Wi‑Fi o USB. En el tutorial repaso la idea, la instalación y cómo enlazarlo con Windows.',
+			youtube: 'https://www.youtube.com/watch?v=jbSY5f1Jeu8&t=1s',
 			youtubeLead: '',
 			youtubeVideoId: 'jbSY5f1Jeu8',
-			youtubeLinkLabel: 'Ver tutorial en YouTube'
+			youtubeEmbedQs: 'start=1&rel=0'
 		}
 	};
 
 	function fillPopupYouTube(d, isBlog) {
 		var $ytBlock = $('#project-popup-youtube-block');
 		var $ytLead = $('#project-popup-youtube-lead');
-		var $ytLink = $('#project-popup-youtube-link');
 		var $ytWrap = $('#project-popup-video-wrap');
 		var $ytFrame = $('#project-popup-youtube-iframe');
-		var $ytThumb = $('#project-popup-youtube-thumb');
-		var $ytThumbImg = $('#project-popup-youtube-thumb-img');
 		var showYt = isBlog
 			? !!(d.youtube || d.youtubeVideoId)
 			: (!d.repo && (d.youtube || d.youtubeVideoId));
 		if (showYt) {
-			var ytUrl = d.youtube || CV_YT_CHANNEL;
-			$ytLead.text(d.youtubeLead != null ? d.youtubeLead : 'Más detalle en mi canal de YouTube.');
-			var linkLabel = d.youtubeLinkLabel || 'Abrir @kevin_carmen en YouTube';
-			$ytLink.attr('href', ytUrl).text(linkLabel);
-			var thumbId = youtubeThumbVideoId(d);
-			if (thumbId) {
-				var watchHref = (d.youtube && /watch\?v=/.test(d.youtube)) ? d.youtube : ('https://www.youtube.com/watch?v=' + thumbId);
-				$ytThumb.attr('href', watchHref);
-				$ytThumbImg.attr('src', 'https://img.youtube.com/vi/' + thumbId + '/hqdefault.jpg').attr('alt', 'Miniatura de YouTube');
-				$ytThumb.removeAttr('hidden');
-			} else {
-				$ytThumb.attr('hidden', true).attr('href', '#');
-				$ytThumbImg.attr('src', '').attr('alt', '');
-			}
+			var leadText = d.youtubeLead != null ? d.youtubeLead : 'Más detalle en mi canal de YouTube.';
+			$ytLead.text(leadText);
+			$ytLead.css('display', String(leadText).trim() !== '' ? '' : 'none');
 			if (d.youtubeVideoId) {
-				$ytFrame.attr('src', 'https://www.youtube.com/embed/' + d.youtubeVideoId + '?rel=0');
+				$ytFrame.attr('src', buildYoutubeEmbedSrc(d.youtubeVideoId, d.youtubeEmbedQs));
 				$ytWrap.prop('hidden', false);
 			} else {
 				$ytFrame.attr('src', '');
@@ -770,8 +760,7 @@ $(function () {
 		} else {
 			$ytFrame.attr('src', '');
 			$ytWrap.prop('hidden', true);
-			$ytThumb.attr('hidden', true).attr('href', '#');
-			$ytThumbImg.attr('src', '').attr('alt', '');
+			$ytLead.css('display', '');
 			$ytBlock.hide();
 		}
 	}
@@ -831,7 +820,7 @@ $(function () {
 				youtube: b.youtube,
 				youtubeLead: b.youtubeLead,
 				youtubeVideoId: b.youtubeVideoId,
-				youtubeLinkLabel: b.youtubeLinkLabel,
+				youtubeEmbedQs: b.youtubeEmbedQs,
 				repo: null
 			},
 			true
@@ -846,8 +835,6 @@ $(function () {
 		$('body').removeClass('project-popup-locked');
 		$('#project-popup-youtube-iframe').attr('src', '');
 		$('#project-popup-video-wrap').prop('hidden', true);
-		$('#project-popup-youtube-thumb').attr('hidden', true).attr('href', '#');
-		$('#project-popup-youtube-thumb-img').attr('src', '').attr('alt', '');
 		$('#project-popup-body').removeClass('popup-mode-blog');
 		$('#project-popup-blog-block').attr('hidden', true);
 		$('.js-popup-project-only').show();
