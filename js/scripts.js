@@ -604,6 +604,290 @@ $(function () {
 		}
 	});
 
+	/*
+		Proyectos: popup centrado (sin panel lateral). Sin repo → bloque YouTube (enlace + iframe opcional).
+	*/
+	var CV_YT_CHANNEL = 'https://www.youtube.com/@kevin_carmen';
+
+	function youtubeVideoIdFromUrl(url) {
+		if (!url || typeof url !== 'string') {
+			return '';
+		}
+		var m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/);
+		return m ? m[1] : '';
+	}
+
+	function youtubeThumbVideoId(d) {
+		if (d.youtubeVideoId) {
+			return d.youtubeVideoId;
+		}
+		return youtubeVideoIdFromUrl(d.youtube || '');
+	}
+
+	var CV_PROJECTS = {
+		proxmox: {
+			kicker: 'Infraestructura',
+			title: 'Homelab Virtualizado con Proxmox',
+			problema: 'Necesitaba un entorno unificado para laboratorios, pruebas y servicios internos sin depender de equipos dispersos.',
+			solucion: 'Homelab basado en Proxmox VE con VMs, redes virtuales y almacenamiento compartido para despliegues repetibles y aislamiento por proyecto.',
+			tech: ['Proxmox VE', 'KVM', 'Linux', 'Redes virtuales', 'Almacenamiento'],
+			youtube: CV_YT_CHANNEL,
+			youtubeLead: 'Este proyecto no tiene repositorio público: los avances y demos los comparto en mi canal de YouTube.',
+			youtubeVideoId: ''
+		},
+		multimedia: {
+			kicker: 'Multimedia',
+			title: 'Plataforma Multimedia Auto-Hospedada',
+			problema: 'Centralizar biblioteca multimedia y acceso cómodo sin depender solo de servicios externos.',
+			solucion: 'Stack auto-hospedado con contenedores, proxy inverso y acceso seguro desde la red local (y remoto cuando aplica).',
+			tech: ['Docker', 'Nginx', 'HTTPS', 'Biblioteca multimedia', 'Acceso remoto'],
+			youtube: CV_YT_CHANNEL,
+			youtubeLead: 'Configuración y recorrido por la plataforma: míralo en YouTube (sin repo en GitHub).',
+			youtubeVideoId: ''
+		},
+		monitoreo: {
+			kicker: 'Operaciones',
+			title: 'Sistema de Monitoreo y Alta Disponibilidad',
+			problema: 'Poca visibilidad del estado de servicios y riesgo de downtime sin alertas tempranas.',
+			solucion: 'Monitoreo de métricas y salud de servicios con paneles y alertas; criterios básicos de redundancia según criticidad.',
+			tech: ['Métricas', 'Alertas', 'Dashboards', 'Docker / servicios', 'Uptime'],
+			youtube: CV_YT_CHANNEL,
+			youtubeLead: 'Paneles, alertas y lecciones aprendidas: contenido en el canal, no en GitHub.',
+			youtubeVideoId: ''
+		},
+		backups: {
+			kicker: 'Resiliencia',
+			title: 'Automatización de Backups en Infraestructura Virtual',
+			problema: 'Copias manuales inconsistentes y difícil garantizar recuperación ante fallos.',
+			solucion: 'Políticas de backup automatizadas con retención y comprobaciones periódicas sobre VMs y datos relevantes.',
+			tech: ['Proxmox / snapshots', 'Scripts', 'Programación (cron)', 'Almacenamiento'],
+			youtube: CV_YT_CHANNEL,
+			youtubeLead: 'Scripts y flujo de backup explicados en video; enlazo el canal (sin repo público).',
+			youtubeVideoId: ''
+		},
+		chatbot: {
+			kicker: 'IA local',
+			title: 'Proyecto: Chatbot IA Local',
+			problema: 'Consultar documentos técnicos rápidamente.',
+			solucion: 'Desarrollé un chatbot con RAG que consulta documentos locales.',
+			tech: ['Python', 'Ollama', 'LangChain'],
+			repo: 'https://github.com/kevin/chatbot-rag'
+		},
+		precios: {
+			kicker: 'Producto',
+			title: 'Comparador de Precios de Hardware',
+			problema: 'Comparar precios entre tiendas y listados consume tiempo y es fácil equivocarse.',
+			solucion: 'Herramienta en desarrollo para reunir fuentes y mostrar comparativas en una interfaz clara (estado: en desarrollo).',
+			tech: ['Python', 'APIs / scraping', 'Frontend web', 'Datos estructurados'],
+			youtube: CV_YT_CHANNEL,
+			youtubeLead: 'Seguimiento del desarrollo y prototipos en YouTube; aún no hay código publicado.',
+			youtubeVideoId: ''
+		}
+	};
+
+	var CV_BLOG = {
+		proxmox: {
+			meta: 'Homelab · Tutorial',
+			title: 'Cómo instalar Proxmox',
+			body: 'Pasos y buenas prácticas para levantar Proxmox VE en tu servidor o PC, redes y almacenamiento inicial.',
+			youtube: CV_YT_CHANNEL,
+			youtubeLead: 'Tutorial completo en mi canal de YouTube.',
+			youtubeVideoId: '',
+			youtubeLinkLabel: 'Ver @kevin_carmen en YouTube'
+		},
+		navidrome: {
+			meta: 'Docker · Música',
+			title: 'Tu propio Spotify con Navidrome en Docker',
+			body: 'Biblioteca auto-hospedada estilo streaming: contenedor, volúmenes y acceso desde la red local.',
+			youtube: CV_YT_CHANNEL,
+			youtubeLead: 'Despliegue y uso en video en el canal.',
+			youtubeVideoId: '',
+			youtubeLinkLabel: 'Ver @kevin_carmen en YouTube'
+		},
+		omv: {
+			meta: 'NAS · Almacenamiento',
+			title: 'Cómo instalar Open Media Vault',
+			body: 'NAS ligero sobre Debian: discos, usuarios, SMB/NFS y primeros servicios para tu homelab.',
+			youtube: CV_YT_CHANNEL,
+			youtubeLead: 'Instalación y consejos en YouTube.',
+			youtubeVideoId: '',
+			youtubeLinkLabel: 'Ver @kevin_carmen en YouTube'
+		},
+		servidor: {
+			meta: 'DIY · Servidor',
+			title: 'Cómo ensamblar tu propio servidor casero',
+			body: 'Elegir placa, RAM, fuente, refrigeración y caja para un equipo estable 24/7 sin gastar de más.',
+			youtube: CV_YT_CHANNEL,
+			youtubeLead: 'Montaje y pruebas en el canal.',
+			youtubeVideoId: '',
+			youtubeLinkLabel: 'Ver @kevin_carmen en YouTube'
+		},
+		womic: {
+			meta: 'Tutorial · Audio',
+			title: 'Convertir tu celular en micrófono',
+			bodyHtml: '<strong>Wo Mic</strong> es una app que convierte tu Android en micrófono inalámbrico para el PC vía Wi‑Fi o USB: útil para llamadas, streaming o cuando no tienes mic a mano. En el video repaso la idea, la instalación básica y cómo enlazarlo con Windows.',
+			youtube: 'https://www.youtube.com/watch?v=jbSY5f1Jeu8&t=35s',
+			youtubeLead: '',
+			youtubeVideoId: 'jbSY5f1Jeu8',
+			youtubeLinkLabel: 'Ver tutorial en YouTube'
+		}
+	};
+
+	function fillPopupYouTube(d, isBlog) {
+		var $ytBlock = $('#project-popup-youtube-block');
+		var $ytLead = $('#project-popup-youtube-lead');
+		var $ytLink = $('#project-popup-youtube-link');
+		var $ytWrap = $('#project-popup-video-wrap');
+		var $ytFrame = $('#project-popup-youtube-iframe');
+		var $ytThumb = $('#project-popup-youtube-thumb');
+		var $ytThumbImg = $('#project-popup-youtube-thumb-img');
+		var showYt = isBlog
+			? !!(d.youtube || d.youtubeVideoId)
+			: (!d.repo && (d.youtube || d.youtubeVideoId));
+		if (showYt) {
+			var ytUrl = d.youtube || CV_YT_CHANNEL;
+			$ytLead.text(d.youtubeLead != null ? d.youtubeLead : 'Más detalle en mi canal de YouTube.');
+			var linkLabel = d.youtubeLinkLabel || 'Abrir @kevin_carmen en YouTube';
+			$ytLink.attr('href', ytUrl).text(linkLabel);
+			var thumbId = youtubeThumbVideoId(d);
+			if (thumbId) {
+				var watchHref = (d.youtube && /watch\?v=/.test(d.youtube)) ? d.youtube : ('https://www.youtube.com/watch?v=' + thumbId);
+				$ytThumb.attr('href', watchHref);
+				$ytThumbImg.attr('src', 'https://img.youtube.com/vi/' + thumbId + '/hqdefault.jpg').attr('alt', 'Miniatura de YouTube');
+				$ytThumb.removeAttr('hidden');
+			} else {
+				$ytThumb.attr('hidden', true).attr('href', '#');
+				$ytThumbImg.attr('src', '').attr('alt', '');
+			}
+			if (d.youtubeVideoId) {
+				$ytFrame.attr('src', 'https://www.youtube.com/embed/' + d.youtubeVideoId + '?rel=0');
+				$ytWrap.prop('hidden', false);
+			} else {
+				$ytFrame.attr('src', '');
+				$ytWrap.prop('hidden', true);
+			}
+			$ytBlock.show();
+		} else {
+			$ytFrame.attr('src', '');
+			$ytWrap.prop('hidden', true);
+			$ytThumb.attr('hidden', true).attr('href', '#');
+			$ytThumbImg.attr('src', '').attr('alt', '');
+			$ytBlock.hide();
+		}
+	}
+
+	function openProjectPopup(key) {
+		var d = CV_PROJECTS[key];
+		if (!d) {
+			return;
+		}
+		$('#project-popup-body').removeClass('popup-mode-blog');
+		$('#project-popup-blog-block').attr('hidden', true);
+		$('.js-popup-project-only').show();
+
+		$('#project-popup-kicker').text(d.kicker || '');
+		$('#project-popup-heading').text(d.title);
+		$('#project-popup-problema').text(d.problema);
+		$('#project-popup-solucion').text(d.solucion);
+		var $ul = $('#project-popup-tech').empty();
+		(d.tech || []).forEach(function (t) {
+			$ul.append($('<li></li>').text(t));
+		});
+
+		var $repoBlock = $('#project-popup-repo-block');
+		var $repo = $('#project-popup-repo');
+		if (d.repo) {
+			var hrefRepo = d.repo.indexOf('http') === 0 ? d.repo : 'https://' + d.repo;
+			var labelRepo = hrefRepo.replace(/^https?:\/\//, '');
+			$repo.attr('href', hrefRepo).text(labelRepo);
+			$repoBlock.show();
+		} else {
+			$repoBlock.hide();
+		}
+
+		fillPopupYouTube(d, false);
+
+		$('#project-popup').addClass('is-open').attr('aria-hidden', 'false');
+		$('body').addClass('project-popup-locked');
+	}
+
+	function openBlogPopup(key) {
+		var b = CV_BLOG[key];
+		if (!b) {
+			return;
+		}
+		$('#project-popup-body').addClass('popup-mode-blog');
+		$('.js-popup-project-only').hide();
+		$('#project-popup-blog-block').removeAttr('hidden');
+		$('#project-popup-kicker').text(b.meta || '');
+		$('#project-popup-heading').text(b.title);
+		if (b.bodyHtml) {
+			$('#project-popup-blog-body').html(b.bodyHtml);
+		} else {
+			$('#project-popup-blog-body').text(b.body || '');
+		}
+		fillPopupYouTube(
+			{
+				youtube: b.youtube,
+				youtubeLead: b.youtubeLead,
+				youtubeVideoId: b.youtubeVideoId,
+				youtubeLinkLabel: b.youtubeLinkLabel,
+				repo: null
+			},
+			true
+		);
+
+		$('#project-popup').addClass('is-open').attr('aria-hidden', 'false');
+		$('body').addClass('project-popup-locked');
+	}
+
+	function closeProjectPopup() {
+		$('#project-popup').removeClass('is-open').attr('aria-hidden', 'true');
+		$('body').removeClass('project-popup-locked');
+		$('#project-popup-youtube-iframe').attr('src', '');
+		$('#project-popup-video-wrap').prop('hidden', true);
+		$('#project-popup-youtube-thumb').attr('hidden', true).attr('href', '#');
+		$('#project-popup-youtube-thumb-img').attr('src', '').attr('alt', '');
+		$('#project-popup-body').removeClass('popup-mode-blog');
+		$('#project-popup-blog-block').attr('hidden', true);
+		$('.js-popup-project-only').show();
+		$('#project-popup-blog-body').empty();
+	}
+
+	$(document).on('click', '.js-project-card', function (e) {
+		e.preventDefault();
+		openProjectPopup($(this).data('project'));
+	});
+
+	$('.works-projects').on('keydown', '.js-project-card', function (e) {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
+			openProjectPopup($(this).data('project'));
+		}
+	});
+
+	$(document).on('click', '.js-blog-card', function (e) {
+		e.preventDefault();
+		openBlogPopup($(this).data('blog'));
+	});
+
+	$('.blog-cards-grid').on('keydown', '.js-blog-card', function (e) {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
+			openBlogPopup($(this).data('blog'));
+		}
+	});
+
+	$('#project-popup-backdrop, #project-popup-close').on('click', function () {
+		closeProjectPopup();
+	});
+
+	$(document).on('keydown', function (e) {
+		if (e.key === 'Escape' && $('#project-popup').hasClass('is-open')) {
+			closeProjectPopup();
+		}
+	});
+
 });
 
 
