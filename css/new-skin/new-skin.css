@@ -672,7 +672,6 @@ input[type="file"] {
 	}
 	.header .top-menu ul {
 		display: flex;
-		overflow: auto;
 	}
 	.header .top-menu ul li {
 		min-width: 20%;
