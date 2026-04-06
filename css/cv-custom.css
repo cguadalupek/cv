@@ -438,17 +438,32 @@
 	.page.new-skin #works-card .grid-items.row {
 		grid-template-columns: 1fr !important;
 		column-gap: 0 !important;
-		row-gap: 22px !important;
+		row-gap: 24px !important;
 	}
 
+	/* Más ancho útil: menos padding en la columna que envuelve la rejilla */
 	.page.new-skin #blog-card .row > .col.col-d-12,
 	.page.new-skin #works-card .row > .col.col-d-12 {
-		padding-left: 12px !important;
-		padding-right: 12px !important;
+		padding-left: 4px !important;
+		padding-right: 4px !important;
+	}
+
+	/* Menos marco lateral del template solo en Blog y Proyectos → cuadros más amplios */
+	.page.new-skin #blog-card .card-wrap,
+	.page.new-skin #works-card .card-wrap {
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+
+	/* Miniaturas un poco más altas en móvil (se ven “más grandes”) */
+	.page.new-skin #blog-card .blog-card-visual {
+		min-height: clamp(168px, 56vw, 280px);
+		aspect-ratio: auto;
 	}
 
 	.page.new-skin #works-card .content.works.works-projects .box-item .image {
-		min-height: 0;
+		min-height: clamp(168px, 56vw, 280px);
+		aspect-ratio: auto;
 	}
 }
 
@@ -903,33 +918,42 @@ button.project-popup-close:hover .project-popup-close-lines::after {
 		border-radius: 8px;
 	}
 
-	/* Blog / proyectos: tipografía y bloques un poco más compactos */
+	/* Contenedor a todo el ancho disponible en móvil (el tema limita a ~400px) */
+	.page.new-skin .container {
+		max-width: 100% !important;
+		width: 100%;
+		padding-left: max(10px, env(safe-area-inset-left, 0px)) !important;
+		padding-right: max(10px, env(safe-area-inset-right, 0px)) !important;
+		box-sizing: border-box;
+	}
+
+	/* Blog / proyectos: textos más legibles y bloque descriptivo más alto */
 	.page.new-skin #blog-card .blog-card-desc {
 		min-height: 0;
-		padding: 14px 12px 16px;
+		padding: 16px 14px 18px;
 	}
 
 	.page.new-skin #works-card .box-item .desc {
 		min-height: 0;
-		padding: 12px 12px 14px;
+		padding: 14px 14px 16px;
 	}
 
 	.blog-card-visual-inner {
-		font-size: clamp(22px, 6vw, 28px);
+		font-size: clamp(24px, 7vw, 32px);
 		left: 16px;
 		bottom: 14px;
 	}
 
 	.blog-card-title {
-		font-size: 16px;
+		font-size: 18px;
 	}
 
 	.page.new-skin .content.works.works-projects .box-item .desc .name {
-		font-size: 17px;
+		font-size: 18px;
 	}
 
 	.page.new-skin .content.works.works-projects .box-item .desc .category {
-		font-size: 14px;
+		font-size: 15px;
 	}
 }
 
