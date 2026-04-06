@@ -70,7 +70,7 @@
 	}
 
 	.card-inner .card-wrap {
-		padding: 50px;
+		padding: 70px;
 	}
 
 	.content .title {
@@ -354,20 +354,18 @@
 	right: auto !important;
 }
 
-/* Misma rejilla en #blog-card y #works-card; proyectos con celdas un poco más amplias 
+/* Misma rejilla en #blog-card y #works-card; proyectos con más separación entre celdas */
 .page.new-skin #blog-card .row > .col.col-d-12 {
-	padding-left: 4px !important;
-	padding-right: 4px !important;
+	padding-left: 10px !important;
+	padding-right: 20px !important;
 	box-sizing: border-box;
 }
-
 
 .page.new-skin #works-card .row > .col.col-d-12 {
 	padding-left: 6px !important;
 	padding-right: 6px !important;
 	box-sizing: border-box;
 }
-*/
 
 .page.new-skin #blog-card .grid-items.row,
 .page.new-skin #works-card .grid-items.row {
@@ -376,8 +374,8 @@
 	grid-auto-rows: minmax(0, auto);
 	align-items: stretch;
 	justify-items: stretch;
-	/*row-gap: 30px !important;
-	column-gap: 18px !important;*/
+	row-gap: 20px !important;
+	column-gap: 5px !important;
 	width: 100% !important;
 	max-width: 100%;
 	margin-left: 0 !important;
@@ -388,8 +386,8 @@
 }
 
 .page.new-skin #works-card .grid-items.row {
-	/*row-gap: 52px !important;
-	column-gap: 24px !important;*/
+	row-gap: 20px !important;
+	column-gap: 5px !important;
 	padding-bottom: 20px;
 }
 
@@ -405,6 +403,8 @@
 	vertical-align: unset;
 	margin-top: 0 !important;
 	margin-bottom: 0 !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
 	padding-top: 0;
 	padding-bottom: 0;
 	box-sizing: border-box;
