@@ -33,6 +33,30 @@
 	background: #ff9800;
 }
 
+/* Experiencia (timeline): listas con el mismo estilo de viñetas */
+.resume-items .resume-item ul {
+	list-style: none;
+	padding: 0;
+	margin: 10px 0 0 0;
+}
+
+.resume-items .resume-item li {
+	position: relative;
+	padding-left: 1.15rem;
+	margin: 0.35rem 0;
+}
+
+.resume-items .resume-item li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.55em;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #ff9800;
+}
+
 /* Hacer el layout más grande (menos “fondo”, más contenido) */
 @media (min-width: 1024px) {
 	body {
