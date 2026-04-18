@@ -269,7 +269,7 @@
 	justify-content: center;
 	gap: 12px;
 	margin: 20px 0;
-	flex-wrap: wrap;
+	flex-wrap: nowrap; /* Asegura una sola línea para que TikTok no baje */
 }
 
 .card-started .profile .social a {
@@ -286,6 +286,21 @@
 .card-started .profile .social a svg {
 	width: 24px;
 	height: 24px;
+}
+
+/* En móviles muy pequeños reducimos ligeramente el tamaño y gap */
+@media (max-width: 480px) {
+	.card-started .profile .social {
+		gap: 8px;
+	}
+	.card-started .profile .social a {
+		width: 36px;
+		height: 36px;
+	}
+	.card-started .profile .social a svg {
+		width: 22px;
+		height: 22px;
+	}
 }
 
 .card-started .profile .social a:hover {
