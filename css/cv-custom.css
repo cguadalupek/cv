@@ -233,11 +233,65 @@
 	opacity: 0.85;
 }
 
-.card-started .profile .social a .ion {
-	font-size: 20px;
-	line-height: 1;
-	display: inline-block;
-	vertical-align: middle;
+/* Estilos para la lista de "Sobre mí" */
+.about-expertise {
+	margin: 20px 0;
+}
+
+.about-expertise ul {
+	list-style: none;
+	padding: 0;
+	margin: 10px 0;
+}
+
+.about-expertise li {
+	position: relative;
+	padding-left: 1.5rem;
+	margin-bottom: 12px;
+	line-height: 1.6;
+	font-size: 15px;
+}
+
+.about-expertise li::before {
+	content: "\f3fd"; /* ion-ios-checkmark-empty o similar */
+	font-family: "Ionicons";
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: #ff9800;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+/* Ajuste de gap para 6 iconos sociales */
+.card-started .profile .social {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	margin: 20px 0;
+	flex-wrap: wrap;
+}
+
+.card-started .profile .social a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	color: #fff;
+	transition: all 0.3s ease;
+	opacity: 0.8;
+}
+
+.card-started .profile .social a svg {
+	width: 24px;
+	height: 24px;
+}
+
+.card-started .profile .social a:hover {
+	opacity: 1;
+	transform: translateY(-3px);
+	color: #ff9800;
 }
 
 .top-menu a .icon {
