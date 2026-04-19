@@ -729,9 +729,20 @@ $(function () {
 		womic: {
 			meta: 'Tutorial · Audio · Wo Mic',
 			title: 'Convertir tu celular en micrófono',
-			bodyHtml: '<strong>Wo Mic</strong> permite usar tu Android como micrófono en el PC por Wi‑Fi o USB. En el tutorial repaso la idea, la instalación y cómo enlazarlo con Windows.',
+			bodyHtml:
+				'<p><strong>Wo Mic</strong> es una herramienta excelente que permite transformar tu smartphone (Android o iOS) en un micrófono inalámbrico para tu computadora. Es la solución perfecta si necesitas un micro para videollamadas, streaming o juegos y no tienes uno a la mano.</p>' +
+				'<h4 style="color: #ff9800; margin-top: 20px;">Configuración en Windows:</h4>' +
+				'<ul style="list-style: decimal; padding-left: 20px; margin-top: 10px;">' +
+				'<li><strong>Drivers y Cliente</strong>: Descarga e instala el <em>Wo Mic Driver</em> y el <em>Wo Mic Client</em> en tu PC desde su página oficial. El driver es esencial para que Windows reconozca el celular como un dispositivo de entrada de audio real.</li>' +
+				'<li><strong>App Móvil</strong>: Instala la aplicación Wo Mic en tu celular desde la Play Store o App Store.</li>' +
+				'<li><strong>Establecer Conexión</strong>: Abre la app en el móvil, ve a configuración, elige el método (Wi-Fi, USB o Bluetooth) y presiona el botón "Start".</li>' +
+				'<li><strong>Vincular con PC</strong>: Abre el cliente en Windows, haz clic en "Connection" -> "Connect" y selecciona el mismo método que en el celular.' +
+				'<ul><li><em>Tip por Wi-Fi</em>: Asegúrate de que ambos estén en la misma red e ingresa la IP que muestra la app.</li>' +
+				'<li><em>Tip por USB</em>: Requiere tener activada la "Depuración USB" en las opciones de desarrollador de Android.</li></ul></li>' +
+				'<li><strong>Configuración Final</strong>: En Windows, ve a <em>Configuración de Sonido</em> y selecciona "WO Mic Device" como tu dispositivo de entrada predeterminado.</li>' +
+				'</ul>',
 			youtube: 'https://www.youtube.com/watch?v=jbSY5f1Jeu8&t=1s',
-			youtubeLead: '',
+			youtubeLead: 'En este video te muestro el proceso paso a paso y pruebas de audio reales.',
 			youtubeVideoId: 'jbSY5f1Jeu8',
 			youtubeEmbedQs: 'start=1&rel=0'
 		},
