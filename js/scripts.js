@@ -657,7 +657,7 @@ $(function () {
 			kicker: 'Operaciones',
 			title: 'Sistema de Monitoreo y Alta Disponibilidad',
 			problema: 'Poca visibilidad del estado de servicios y riesgo de downtime sin alertas tempranas.',
-			solucion: 'Monitoreo de métricas y salud de servicios con paneles y alertas; criterios básicos de redundancia según criticidad.',
+			solucion: 'Monitoreo de métricas y salud de servicios con paneles y alertas; criterio para verificar redundancia según criticidad.',
 			tech: ['Métricas', 'Alertas', 'Dashboards', 'Docker / servicios', 'Uptime'],
 			youtube: CV_YT_CHANNEL,
 			youtubeLead: 'Paneles, alertas y lecciones aprendidas: contenido en el canal, no en GitHub.',
