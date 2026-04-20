@@ -210,6 +210,31 @@
 	background: #ff9800;
 }
 
+/* Experiencia (timeline): fechas más equilibradas y legibles */
+.resume-items .resume-item .date {
+	font-size: 14px !important;
+	color: var(--text-main) !important;
+	font-weight: 600 !important;
+	opacity: 0.85;
+	margin-bottom: 8px !important;
+	display: block !important;
+}
+
+/* Ocultar el puntito gris original del template para usar el estilo custom */
+.resume-items .resume-item .date:before {
+	display: none !important;
+}
+
+.resume-items .resume-item .name {
+	font-size: 18px !important;
+	margin-bottom: 4px !important;
+}
+
+.resume-items .resume-item .company {
+	font-size: 14px !important;
+	margin-bottom: 12px !important;
+}
+
 @media (max-width: 1100px) {
 	.skills-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
