@@ -87,6 +87,7 @@ const themeToggleState = document.getElementById("theme-toggle-state");
 const typedRole = document.getElementById("typed-role");
 const navLinks = Array.from(document.querySelectorAll(".nav-link"));
 const sections = Array.from(document.querySelectorAll("main .panel[id]"));
+const floatingNav = document.getElementById("floating-nav");
 const modal = document.getElementById("project-modal");
 const modalKicker = document.getElementById("project-modal-kicker");
 const modalTitle = document.getElementById("project-modal-title");
@@ -165,6 +166,13 @@ function setActiveNav(id) {
   });
 }
 
+function updateFloatingNavVisibility() {
+  const threshold = window.innerWidth <= 760 ? 220 : 180;
+  const isVisible = window.scrollY > threshold;
+  document.body.classList.toggle("floating-nav-visible", isVisible);
+  floatingNav.setAttribute("aria-hidden", isVisible ? "false" : "true");
+}
+
 function initSectionObserver() {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -241,8 +249,15 @@ function initProjectModal() {
   });
 }
 
+function initFloatingNav() {
+  updateFloatingNavVisibility();
+  window.addEventListener("scroll", updateFloatingNavVisibility, { passive: true });
+  window.addEventListener("resize", updateFloatingNavVisibility);
+}
+
 initTheme();
 initThemeToggle();
 initTypewriter();
 initSectionObserver();
 initProjectModal();
+initFloatingNav();
