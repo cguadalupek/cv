@@ -114,8 +114,16 @@ function updateThemeColor() {
 function applyTheme(theme) {
   html.dataset.theme = theme;
   localStorage.setItem(themeStorageKey, theme);
-  themeToggleState.textContent = theme === "light" ? "Claro" : "Oscuro";
-  themeToggle.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
+  if (themeToggleState) {
+    themeToggleState.textContent = theme === "light" ? "Claro" : "Oscuro";
+  }
+  if (themeToggle) {
+    themeToggle.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
+    themeToggle.setAttribute(
+      "aria-label",
+      theme === "light" ? "Tema claro activo; cambiar a oscuro" : "Tema oscuro activo; cambiar a claro"
+    );
+  }
   updateThemeColor();
 }
 
@@ -127,6 +135,9 @@ function initTheme() {
 }
 
 function initThemeToggle() {
+  if (!themeToggle) {
+    return;
+  }
   themeToggle.addEventListener("click", () => {
     const nextTheme = html.dataset.theme === "dark" ? "light" : "dark";
     applyTheme(nextTheme);
