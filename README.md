@@ -1,4 +1,4 @@
-# Documentacion del sitio personal
+# Sitio personal de Kevin Carmen
 
 ## Resumen
 
@@ -10,7 +10,7 @@ Objetivos de esta version:
 - Mantener la linea visual del CV anterior.
 - Simplificar mantenimiento y edicion.
 - Soportar tema claro y oscuro.
-- Tener una navegacion flotante mas usable en movil.
+- Tener una navegacion mas usable en movil.
 - Eliminar la seccion blog.
 
 ## Estructura principal
@@ -47,21 +47,21 @@ Cada una tiene su propio panel y puede editarse directamente en el HTML.
 
 La pagina usa dos navegaciones con el mismo contenido:
 
-- Navegacion normal dentro del layout para escritorio.
-- Navegacion flotante para scroll y para movil.
+- Navegacion fija dentro de la pagina.
+- Navegacion flotante para scroll.
 
 ### Comportamiento actual
 
-- En escritorio, la navegacion normal aparece dentro de la pagina.
+- En escritorio, la navegacion fija aparece dentro de la pagina.
 - En escritorio, la barra flotante aparece cuando se hace scroll hacia abajo.
 - En movil, al cargar se muestra la navegacion fija dentro de la pagina.
 - En movil, la barra flotante aparece recien cuando se hace scroll hacia abajo.
-- Los botones del menu usan iconos y mayor tamano visual para mejorar la pulsacion en pantallas pequenas.
+- Los botones del menu usan iconos y mayor tamano visual para mejorar la pulsacion.
 
 ### Archivos relacionados
 
 - HTML de navegacion: `index.html`
-- Estilos de barra flotante: `css/site.css`
+- Estilos de navegacion: `css/site.css`
 - Logica de visibilidad y seccion activa: `js/main.js`
 
 ## Tema claro y oscuro
@@ -114,7 +114,7 @@ Mejoras aplicadas en esta version:
 - Lectura mas limpia en parrafos largos.
 - Ajustes para movil con mejor compactacion visual.
 
-Si quieres cambiar la personalidad visual mas adelante, la primera decision fuerte seria cambiar la fuente base y recalibrar tamaños en `css/site.css`.
+Si quieres cambiar la personalidad visual mas adelante, la primera decision fuerte seria cambiar la fuente base y recalibrar tamanos en `css/site.css`.
 
 ## Ajustes responsivos
 
@@ -126,8 +126,8 @@ El comportamiento movil vive principalmente en:
 En ese bloque se controla:
 
 - Paso de dos columnas a una.
-- Ocultar la navegacion normal en movil.
-- Barra flotante inferior.
+- Menu inicial fijo en movil.
+- Barra flotante inferior al hacer scroll.
 - Compactacion de textos y espaciados.
 
 ## Como editar contenido rapido
@@ -165,13 +165,13 @@ Cambiar el PDF dentro de `cv/` y actualizar el enlace si el nombre cambia.
 Despues de cualquier ajuste visual o funcional, revisar:
 
 1. Escritorio
-   - Navegacion normal visible.
+   - Navegacion fija visible.
    - Barra flotante aparece al hacer scroll.
    - Tema claro y oscuro funcionando.
 
 2. Movil
-   - Navegacion normal oculta.
-   - Solo se ve la barra flotante.
+   - Navegacion fija visible al cargar.
+   - Barra flotante aparece despues de hacer scroll.
    - La barra no tapa demasiado contenido.
    - La navegacion sigue funcionando por seccion.
 
