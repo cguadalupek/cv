@@ -1,5 +1,5 @@
 const roles = [
-  "Tecnico IT",
+  "Técnico IT",
   "Analista de Soporte TI",
   "Service Desk",
   "Infraestructura y Homelab",
@@ -23,9 +23,9 @@ const projects = {
     kicker: "Multimedia",
     title: "Plataforma Multimedia Auto-Hospedada",
     problem:
-      "Queria centralizar la biblioteca multimedia y acceder a ella de forma comoda sin depender solo de servicios externos.",
+      "Quería centralizar la biblioteca multimedia y acceder a ella de forma cómoda sin depender solo de servicios externos.",
     solution:
-      "Organice un stack auto-hospedado con contenedores, proxy inverso y acceso seguro desde la red local o remoto segun el caso.",
+      "Organicé un stack auto-hospedado con contenedores, proxy inverso y acceso seguro desde la red local o remoto según el caso.",
     tech: ["Docker", "Nginx", "HTTPS", "Biblioteca multimedia", "Acceso remoto"],
     links: [
       { label: "Ver canal", href: "https://www.youtube.com/@kevin_carmen" }
@@ -35,10 +35,10 @@ const projects = {
     kicker: "Operaciones",
     title: "Sistema de Monitoreo y Alta Disponibilidad",
     problem:
-      "Faltaba visibilidad del estado de servicios y habia riesgo de downtime sin alertas tempranas ni criterios de redundancia.",
+      "Faltaba visibilidad del estado de servicios y había riesgo de downtime sin alertas tempranas ni criterios de redundancia.",
     solution:
-      "Defini monitoreo de metricas y salud de servicios con paneles, alertas y validaciones de redundancia segun criticidad.",
-    tech: ["Metricas", "Alertas", "Dashboards", "Docker y servicios", "Uptime"],
+      "Definí monitoreo de métricas y salud de servicios con paneles, alertas y validaciones de redundancia según criticidad.",
+    tech: ["Métricas", "Alertas", "Dashboards", "Docker y servicios", "Uptime"],
     links: [
       { label: "Ver canal", href: "https://www.youtube.com/@kevin_carmen" }
     ]
@@ -59,9 +59,9 @@ const projects = {
     kicker: "IA local",
     title: "Chatbot Local con IA y RAG",
     problem:
-      "Necesitaba consultar documentos tecnicos de manera mas rapida sin buscar manualmente entre multiples archivos.",
+      "Necesitaba consultar documentos técnicos de manera más rápida sin buscar manualmente entre múltiples archivos.",
     solution:
-      "Desarrolle un chatbot con RAG para consultar documentacion local y responder sobre contenido tecnico de forma contextual.",
+      "Desarrollé un chatbot con RAG para consultar documentación local y responder sobre contenido técnico de forma contextual.",
     tech: ["Python", "Ollama", "LangChain"],
     links: [
       { label: "Repositorio", href: "https://github.com/kevin/chatbot-rag" }
@@ -71,9 +71,9 @@ const projects = {
     kicker: "Producto",
     title: "Comparador de Precios de Hardware",
     problem:
-      "Comparar precios entre tiendas y listados consume tiempo y vuelve facil equivocarse o perder mejores opciones.",
+      "Comparar precios entre tiendas y listados consume tiempo y vuelve fácil equivocarse o perder mejores opciones.",
     solution:
-      "Estoy construyendo una herramienta para reunir fuentes y mostrar comparativas claras en una interfaz sencilla, aun en desarrollo.",
+      "Estoy construyendo una herramienta para reunir fuentes y mostrar comparativas claras en una interfaz sencilla, aún en desarrollo.",
     tech: ["Python", "APIs y scraping", "Frontend web", "Datos estructurados"],
     links: [
       { label: "Seguimiento en YouTube", href: "https://www.youtube.com/@kevin_carmen" }
