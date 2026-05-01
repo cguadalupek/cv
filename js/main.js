@@ -167,8 +167,9 @@ function setActiveNav(id) {
 }
 
 function updateFloatingNavVisibility() {
-  const threshold = window.innerWidth <= 760 ? 220 : 180;
-  const isVisible = window.scrollY > threshold;
+  const isMobile = window.innerWidth <= 760;
+  const threshold = 180;
+  const isVisible = isMobile ? true : window.scrollY > threshold;
   document.body.classList.toggle("floating-nav-visible", isVisible);
   floatingNav.setAttribute("aria-hidden", isVisible ? "false" : "true");
 }

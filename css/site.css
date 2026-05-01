@@ -866,7 +866,10 @@ html[data-theme="light"] .project-card {
     padding: 12px 14px;
   }
 
-  .section-nav nav,
+  .section-nav {
+    display: none;
+  }
+
   .sidebar-actions,
   .contact-actions {
     flex-direction: column;
@@ -886,9 +889,9 @@ html[data-theme="light"] .project-card {
     top: auto;
     bottom: 12px;
     width: min(calc(100vw - 20px), 560px);
-    padding: 10px;
-    border-radius: 24px;
-    transform: translate(-50%, 18px);
+    padding: 8px 10px;
+    border-radius: 20px;
+    transform: translate(-50%, 0);
   }
 
   body.floating-nav-visible .floating-nav {
@@ -896,16 +899,26 @@ html[data-theme="light"] .project-card {
   }
 
   .floating-nav nav {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .floating-nav nav::-webkit-scrollbar {
+    display: none;
   }
 
   .floating-nav .nav-link {
-    width: 100%;
-    min-height: 42px;
-    padding: 10px 8px;
-    font-size: 0.78rem;
+    width: auto;
+    min-width: max-content;
+    min-height: 38px;
+    padding: 9px 12px;
+    font-size: 0.74rem;
     text-align: center;
   }
 }
