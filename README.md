@@ -45,18 +45,19 @@ Cada una tiene su propio panel y puede editarse directamente en el HTML.
 
 ## Navegacion
 
-La pagina usa dos navegaciones con el mismo contenido:
-
-- Navegacion fija dentro de la pagina.
-- Navegacion flotante para scroll.
+La pagina usa una navegacion especifica para movil.
 
 ### Comportamiento actual
 
-- En escritorio, la navegacion fija aparece dentro de la pagina.
-- En escritorio, la barra flotante aparece cuando se hace scroll hacia abajo.
-- En movil, al cargar se muestra la navegacion fija dentro de la pagina.
-- En movil, la barra flotante aparece recien cuando se hace scroll hacia abajo.
-- Los botones del menu usan iconos y mayor tamano visual para mejorar la pulsacion.
+- En escritorio y tablet se muestra una navegacion fija dentro del contenido.
+- En escritorio y tablet, al seleccionar una opcion se muestra solo la tarjeta de esa seccion.
+- En escritorio y tablet, la barra flotante aparece al hacer scroll hacia abajo.
+- En movil, al cargar se muestra una navegacion integrada debajo de `Cambiar tema`.
+- En movil, la barra flotante aparece solo al hacer scroll.
+- En movil, cuando aparece la barra flotante, el menu integrado se oculta para que nunca haya dos menus visibles a la vez.
+- En movil, los botones del menu se presentan en una sola fila completa, con icono arriba y texto abajo.
+- En movil, el menu no muestra la opcion `Contacto`; el acceso principal a esa seccion queda en el boton `Contactame` y en el contenido de la pagina.
+- Los botones del menu usan iconos, menor redondeado y un reparto uniforme por columna para mejorar pulsacion y encaje visual.
 
 ### Archivos relacionados
 
@@ -126,8 +127,9 @@ El comportamiento movil vive principalmente en:
 En ese bloque se controla:
 
 - Paso de dos columnas a una.
-- Menu inicial fijo en movil.
-- Barra flotante inferior al hacer scroll.
+- Menu inicial integrado debajo del cambio de tema.
+- Barra flotante superior en escritorio/tablet e inferior en movil.
+- Vista por tarjetas para mostrar solo una seccion a la vez.
 - Compactacion de textos y espaciados.
 
 ## Como editar contenido rapido
@@ -138,7 +140,7 @@ El bloque inicial esta pensado como presentacion corta.
 
 - No muestra el resumen largo del perfil.
 - Ese texto vive solamente en la seccion `Sobre mi`.
-- En movil, el bloque inicial se compacta para que entren nombre, botones, menu, datos rapidos, redes y cambio de tema con mejor prioridad visual.
+- En movil, el bloque inicial se compacta para que entren nombre, botones principales, menu integrado, datos rapidos, redes y cambio de tema con mejor prioridad visual.
 
 ### Texto de perfil
 
@@ -165,15 +167,16 @@ Cambiar el PDF dentro de `cv/` y actualizar el enlace si el nombre cambia.
 Despues de cualquier ajuste visual o funcional, revisar:
 
 1. Escritorio
-   - Navegacion fija visible.
-   - Barra flotante aparece al hacer scroll.
+   - Navegacion fija visible dentro del contenido.
+   - Barra flotante visible despues de scroll.
    - Tema claro y oscuro funcionando.
 
 2. Movil
-   - Navegacion fija visible al cargar.
-   - Barra flotante aparece despues de hacer scroll.
+   - El menu inicial aparece debajo de `Cambiar tema`.
+   - La barra flotante aparece solo despues de scroll.
+   - Nunca se ven los dos menus al mismo tiempo.
    - La barra no tapa demasiado contenido.
-   - La navegacion sigue funcionando por seccion.
+   - La navegacion abre una sola seccion visible por vez.
 
 3. Proyectos
    - El modal abre y cierra bien.

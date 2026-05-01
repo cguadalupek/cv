@@ -86,7 +86,9 @@ const themeToggle = document.getElementById("theme-toggle");
 const themeToggleState = document.getElementById("theme-toggle-state");
 const typedRole = document.getElementById("typed-role");
 const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+const hashLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
 const sections = Array.from(document.querySelectorAll("main .panel[id]"));
+const panels = document.querySelector(".panels");
 const floatingNav = document.getElementById("floating-nav");
 const modal = document.getElementById("project-modal");
 const modalKicker = document.getElementById("project-modal-kicker");
@@ -97,6 +99,8 @@ const modalTech = document.getElementById("project-modal-tech");
 const modalActions = document.getElementById("project-modal-actions");
 const projectButtons = document.querySelectorAll("[data-project]");
 const closeTargets = document.querySelectorAll("[data-close-modal]");
+const mobileQuery = window.matchMedia("(max-width: 760px)");
+let activeSectionId = null;
 
 function updateThemeColor() {
   const themeColor = html.dataset.theme === "light" ? "#f4f1ea" : "#17171c";
@@ -161,36 +165,116 @@ function initTypewriter() {
 
 function setActiveNav(id) {
   navLinks.forEach((link) => {
-    const isActive = link.getAttribute("href") === `#${id}`;
+    const isActive = Boolean(id) && link.getAttribute("href") === `#${id}`;
     link.classList.toggle("is-active", isActive);
   });
 }
 
+function isMobileCardMode() {
+  return mobileQuery.matches;
+}
+
 function updateFloatingNavVisibility() {
-  const threshold = 180;
+  const threshold = isMobileCardMode() ? 120 : 170;
   const isVisible = window.scrollY > threshold;
   document.body.classList.toggle("floating-nav-visible", isVisible);
   floatingNav.setAttribute("aria-hidden", isVisible ? "false" : "true");
 }
 
-function initSectionObserver() {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visibleEntry = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+function setPanelsEmpty(isEmpty) {
+  if (!panels) {
+    return;
+  }
 
-      if (visibleEntry) {
-        setActiveNav(visibleEntry.target.id);
-      }
-    },
-    {
-      rootMargin: "-18% 0px -55% 0px",
-      threshold: [0.15, 0.4, 0.7]
+  document.body.classList.toggle("mobile-home-state", isEmpty);
+}
+
+function syncPanelState(animate = false) {
+  if (!panels) {
+    return;
+  }
+
+  document.body.classList.add("card-mode-ready");
+
+  const currentSectionId = activeSectionId;
+  const shouldHidePanels = isMobileCardMode() && !currentSectionId;
+  setPanelsEmpty(shouldHidePanels);
+
+  sections.forEach((section) => {
+    const isActive = Boolean(currentSectionId) && section.id === currentSectionId;
+    section.classList.toggle("is-panel-active", isActive);
+
+    if (isActive && animate) {
+      section.classList.remove("is-panel-active");
+      void section.offsetWidth;
+      section.classList.add("is-panel-active");
     }
-  );
+  });
+}
 
-  sections.forEach((section) => observer.observe(section));
+function showSection(id, options = {}) {
+  const target = sections.find((section) => section.id === id);
+  if (!target) {
+    return;
+  }
+
+  const shouldAnimate = options.animate !== false && activeSectionId !== id;
+  activeSectionId = id;
+  setActiveNav(id);
+  syncPanelState(shouldAnimate);
+  updateFloatingNavVisibility();
+
+  if (options.scroll !== false) {
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+}
+
+function initHashNavigation() {
+  hashLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const href = link.getAttribute("href");
+      if (!href || href === "#") {
+        return;
+      }
+
+      const id = href.slice(1);
+      const hasSection = sections.some((section) => section.id === id);
+      if (!hasSection) {
+        return;
+      }
+
+      event.preventDefault();
+      showSection(id);
+    });
+  });
+}
+
+function syncResponsiveNavigation() {
+  const hashId = window.location.hash.replace("#", "");
+  const hasHashSection = sections.some((section) => section.id === hashId);
+
+  if (hasHashSection) {
+    activeSectionId = hashId;
+  } else if (!activeSectionId) {
+    activeSectionId = isMobileCardMode() ? null : "sobre-mi";
+  } else if (!sections.some((section) => section.id === activeSectionId)) {
+    activeSectionId = isMobileCardMode() ? null : "sobre-mi";
+  }
+
+  if (!activeSectionId && !isMobileCardMode()) {
+    activeSectionId = "sobre-mi";
+  }
+
+  if (activeSectionId) {
+    setActiveNav(activeSectionId);
+  } else {
+    setActiveNav(null);
+  }
+
+  syncPanelState(false);
+  updateFloatingNavVisibility();
 }
 
 function openProjectModal(projectKey) {
@@ -250,14 +334,15 @@ function initProjectModal() {
 }
 
 function initFloatingNav() {
+  syncResponsiveNavigation();
   updateFloatingNavVisibility();
   window.addEventListener("scroll", updateFloatingNavVisibility, { passive: true });
-  window.addEventListener("resize", updateFloatingNavVisibility);
+  window.addEventListener("resize", syncResponsiveNavigation);
 }
 
 initTheme();
 initThemeToggle();
 initTypewriter();
-initSectionObserver();
+initHashNavigation();
 initProjectModal();
 initFloatingNav();
