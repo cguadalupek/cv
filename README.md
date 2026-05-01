@@ -30,6 +30,28 @@ Objetivos de esta version:
 - `cv/`
   Archivos PDF del CV para descarga.
 
+## Tecnologias usadas
+
+Este sitio esta construido con un stack front-end estatico y ligero:
+
+- `HTML5`
+  Estructura semantica de la pagina y contenido principal.
+
+- `CSS3`
+  Estilos visuales, layout responsivo, variables de tema, animaciones y estados visuales.
+
+- `JavaScript vanilla`
+  Logica del cambio de tema, navegacion por secciones, texto rotativo y modal de proyectos.
+
+- `Google Fonts`
+  Carga de la familia `Poppins` usada en toda la interfaz.
+
+- `SVG inline`
+  Iconos de navegacion, redes sociales y botones sin depender de librerias externas.
+
+- `localStorage`
+  Persistencia del modo claro y oscuro entre sesiones.
+
 ## Secciones de la pagina
 
 Las secciones visibles estan definidas en `index.html`:

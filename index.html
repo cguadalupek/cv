@@ -56,20 +56,15 @@
         </p>
 
         <div class="sidebar-actions">
-          <a class="button button--primary" href="cv/kevin-carmen-cv-frontend.pdf" target="_blank" rel="noopener">
-            Descargar CV
+          <a class="button button--primary button--icon" href="cv/kevin-carmen-cv-frontend.pdf" target="_blank" rel="noopener">
+            <span class="button__icon button__icon--clip" aria-hidden="true"></span>
+            <span class="button__text">Descargar CV</span>
           </a>
-          <a class="button button--ghost" href="#contacto">
-            Contactame
+          <a class="button button--ghost button--icon" href="#contacto">
+            <span class="button__icon button__icon--mail" aria-hidden="true"></span>
+            <span class="button__text">Contactame</span>
           </a>
         </div>
-
-        <dl class="quick-facts">
-          <div>
-            <dt>Ubicacion</dt>
-            <dd>Lima, Perú</dd>
-          </div>
-        </dl>
 
         <div class="social-links" aria-label="Redes sociales">
           <a href="https://www.linkedin.com/in/kevincarmenguadalupe" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -93,8 +88,11 @@
         </div>
 
         <button class="theme-toggle" id="theme-toggle" type="button" aria-live="polite">
-          <span class="theme-toggle__label">Cambiar tema</span>
-          <span class="theme-toggle__state" id="theme-toggle-state">Oscuro</span>
+          <span class="theme-toggle__label">Tema</span>
+          <span class="theme-toggle__switch" aria-hidden="true">
+            <span class="theme-toggle__thumb"></span>
+          </span>
+          <span class="theme-toggle__state sr-only" id="theme-toggle-state">Oscuro</span>
         </button>
 
         <nav class="mobile-home-nav" aria-label="Navegacion inicial movil">
