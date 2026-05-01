@@ -91,6 +91,7 @@ const hashLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
 const sections = Array.from(document.querySelectorAll("main .panel[id]"));
 const panels = document.querySelector(".panels");
 const floatingNav = document.getElementById("floating-nav");
+const contentArea = document.querySelector(".content-area");
 const modal = document.getElementById("project-modal");
 const modalKicker = document.getElementById("project-modal-kicker");
 const modalTitle = document.getElementById("project-modal-title");
@@ -186,7 +187,27 @@ function isMobileCardMode() {
   return mobileQuery.matches;
 }
 
+function syncFloatingNavToContentColumn() {
+  if (!floatingNav) {
+    return;
+  }
+  if (mobileQuery.matches) {
+    floatingNav.style.removeProperty("left");
+    floatingNav.style.removeProperty("width");
+    return;
+  }
+  if (!contentArea) {
+    return;
+  }
+  const rect = contentArea.getBoundingClientRect();
+  floatingNav.style.left = `${rect.left}px`;
+  floatingNav.style.width = `${rect.width}px`;
+}
+
 function updateFloatingNavVisibility() {
+  if (!floatingNav) {
+    return;
+  }
   const threshold = isMobileCardMode() ? 120 : 170;
   const isVisible = window.scrollY > threshold;
   document.body.classList.toggle("floating-nav-visible", isVisible);
@@ -286,6 +307,7 @@ function syncResponsiveNavigation() {
   }
 
   syncPanelState(false);
+  syncFloatingNavToContentColumn();
   updateFloatingNavVisibility();
 }
 
@@ -348,8 +370,14 @@ function initProjectModal() {
 function initFloatingNav() {
   syncResponsiveNavigation();
   updateFloatingNavVisibility();
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => syncFloatingNavToContentColumn());
+  });
   window.addEventListener("scroll", updateFloatingNavVisibility, { passive: true });
   window.addEventListener("resize", syncResponsiveNavigation);
+  if (contentArea && typeof ResizeObserver !== "undefined") {
+    new ResizeObserver(() => syncFloatingNavToContentColumn()).observe(contentArea);
+  }
 }
 
 initTheme();
