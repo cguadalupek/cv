@@ -54,8 +54,9 @@ La pagina usa dos navegaciones con el mismo contenido:
 
 - En escritorio, la navegacion normal aparece dentro de la pagina.
 - En escritorio, la barra flotante aparece cuando se hace scroll hacia abajo.
-- En movil, la navegacion normal se oculta.
-- En movil, solo queda visible la barra flotante.
+- En movil, al cargar se muestra la navegacion fija dentro de la pagina.
+- En movil, la barra flotante aparece recien cuando se hace scroll hacia abajo.
+- Los botones del menu usan iconos y mayor tamano visual para mejorar la pulsacion en pantallas pequenas.
 
 ### Archivos relacionados
 
@@ -131,9 +132,17 @@ En ese bloque se controla:
 
 ## Como editar contenido rapido
 
+### Bloque inicial
+
+El bloque inicial esta pensado como presentacion corta.
+
+- No muestra el resumen largo del perfil.
+- Ese texto vive solamente en la seccion `Sobre mi`.
+- En movil, el bloque inicial se compacta para que entren nombre, botones, menu, datos rapidos, redes y cambio de tema con mejor prioridad visual.
+
 ### Texto de perfil
 
-Editar en `index.html` dentro de la tarjeta lateral y la seccion `Sobre mi`.
+Editar en `index.html` dentro de la seccion `Sobre mi`.
 
 ### Experiencia laboral
 
