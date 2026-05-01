@@ -58,6 +58,7 @@ La pagina usa una navegacion especifica para movil.
 - En movil, los botones del menu se presentan en una sola fila completa, con icono arriba y texto abajo.
 - En movil, el menu no muestra la opcion `Contacto`; el acceso principal a esa seccion queda en el boton `Contactame` y en el contenido de la pagina.
 - Los botones del menu usan iconos, menor redondeado y un reparto uniforme por columna para mejorar pulsacion y encaje visual.
+- El bloque inicial movil usa proporciones mas grandes para foto, botones, iconos y tarjeta superior.
 
 ### Archivos relacionados
 
@@ -141,6 +142,9 @@ El bloque inicial esta pensado como presentacion corta.
 - No muestra el resumen largo del perfil.
 - Ese texto vive solamente en la seccion `Sobre mi`.
 - En movil, el bloque inicial se compacta para que entren nombre, botones principales, menu integrado, datos rapidos, redes y cambio de tema con mejor prioridad visual.
+- La caja `Enfoque` fue retirada del bloque inicial.
+- Se agrego Facebook a redes sociales.
+- El texto rotativo ahora incluye `Development`.
 
 ### Texto de perfil
 
@@ -180,6 +184,11 @@ Despues de cualquier ajuste visual o funcional, revisar:
 
 3. Proyectos
    - El modal abre y cierra bien.
+
+4. Contacto
+   - Boton de correo con icono.
+   - Boton de WhatsApp con icono.
+   - La lista ya no muestra YouTube.
    - Los enlaces del proyecto apuntan correctamente.
 
 ## Mantenimiento futuro recomendado

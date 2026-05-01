@@ -2,7 +2,8 @@ const roles = [
   "Tecnico IT",
   "Analista de Soporte TI",
   "Service Desk",
-  "Infraestructura y Homelab"
+  "Infraestructura y Homelab",
+  "Development"
 ];
 
 const projects = {
