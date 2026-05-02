@@ -378,12 +378,13 @@ html[data-theme="light"] .sidebar-card__portrait {
 }
 
 .theme-toggle {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
-  width: auto;
-  margin: 16px auto 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 16px 0 0;
   padding: 6px 4px;
   background: transparent;
   border: none;
@@ -1194,6 +1195,21 @@ body.card-mode-ready.mobile-home-state .panels {
     grid-template-columns: 1fr;
   }
 
+  body.card-mode-ready .panels {
+    margin-top: 16px;
+  }
+
+  body.card-mode-ready .panel {
+    display: block;
+  }
+
+  body.card-mode-ready.mobile-home-state .panels {
+    display: grid;
+  }
+
+  body.card-mode-ready .panel.is-panel-active {
+    animation: none;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1347,7 +1363,7 @@ body.card-mode-ready.mobile-home-state .panels {
   }
 
   .theme-toggle {
-    margin: 14px auto 0;
+    margin: 14px 0 0;
     padding: 6px 2px;
     gap: 12px;
   }
@@ -1482,22 +1498,6 @@ body.card-mode-ready.mobile-home-state .panels {
     width: 22px;
     height: 22px;
     flex-basis: 22px;
-  }
-
-  body.card-mode-ready .panels {
-    margin-top: 16px;
-  }
-
-  body.card-mode-ready .panel {
-    display: block;
-  }
-
-  body.card-mode-ready.mobile-home-state .panels {
-    display: grid;
-  }
-
-  body.card-mode-ready .panel.is-panel-active {
-    animation: none;
   }
 
   body.floating-nav-visible .content-area {
