@@ -291,12 +291,8 @@ function syncResponsiveNavigation() {
   if (hasHashSection) {
     activeSectionId = hashId;
   } else if (!activeSectionId) {
-    activeSectionId = isMobileCardMode() ? null : "sobre-mi";
+    activeSectionId = "sobre-mi";
   } else if (!sections.some((section) => section.id === activeSectionId)) {
-    activeSectionId = isMobileCardMode() ? null : "sobre-mi";
-  }
-
-  if (!activeSectionId && !isMobileCardMode()) {
     activeSectionId = "sobre-mi";
   }
 

@@ -87,8 +87,18 @@
         </div>
 
         <button class="theme-toggle" id="theme-toggle" type="button" aria-live="polite" aria-label="Cambiar tema">
+          <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M14.2 2.25a8.8 8.8 0 1 0 7.55 12.58 9.3 9.3 0 0 1-4.04.92A9.46 9.46 0 0 1 8.25 6.29c0-1.42.3-2.77.84-3.99a8.76 8.76 0 0 0 5.11-.05Z" />
+            </svg>
+          </span>
           <span class="theme-toggle__switch" aria-hidden="true">
             <span class="theme-toggle__thumb"></span>
+          </span>
+          <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M12 4.5a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 12 4.5Zm0 12a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Zm7.5-3.75a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5h-1.5a.75.75 0 0 1-.75-.75Zm-17.25 0A.75.75 0 0 1 3 12h1.5a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1-.75-.75Zm14.22 4.97a.75.75 0 0 1 1.06 0l1.06 1.06a.75.75 0 0 1-1.06 1.06l-1.06-1.06a.75.75 0 0 1 0-1.06Zm-10.94 0a.75.75 0 0 1 0 1.06L4.47 19.84a.75.75 0 1 1-1.06-1.06l1.06-1.06a.75.75 0 0 1 1.06 0Zm10.94-11.44a.75.75 0 0 1 0 1.06.75.75 0 0 1-1.06 0l-1.06-1.06a.75.75 0 0 1 1.06-1.06l1.06 1.06Zm-10.94 0 1.06-1.06a.75.75 0 0 1 1.06 1.06L6.59 7.34a.75.75 0 1 1-1.06-1.06ZM12 17.25a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V18a.75.75 0 0 1 .75-.75Z" />
+            </svg>
           </span>
           <span class="theme-toggle__state sr-only" id="theme-toggle-state">Oscuro</span>
         </button>
