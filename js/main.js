@@ -376,9 +376,45 @@ function initFloatingNav() {
   }
 }
 
+function initCursorGlow() {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+  if (reduceMotion || !finePointer) {
+    return;
+  }
+
+  const root = document.documentElement;
+  let rafId = 0;
+  let clientX = 140;
+  let clientY = 100;
+
+  function applyGlowPosition() {
+    rafId = 0;
+    root.style.setProperty("--glow-cursor-x", `${clientX}px`);
+    root.style.setProperty("--glow-cursor-y", `${clientY}px`);
+  }
+
+  function scheduleGlowPosition() {
+    if (!rafId) {
+      rafId = window.requestAnimationFrame(applyGlowPosition);
+    }
+  }
+
+  window.addEventListener(
+    "mousemove",
+    (event) => {
+      clientX = event.clientX;
+      clientY = event.clientY;
+      scheduleGlowPosition();
+    },
+    { passive: true }
+  );
+}
+
 initTheme();
 initThemeToggle();
 initTypewriter();
 initHashNavigation();
 initProjectModal();
 initFloatingNav();
+initCursorGlow();

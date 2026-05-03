@@ -1,4 +1,6 @@
 :root {
+  --glow-cursor-x: 140px;
+  --glow-cursor-y: 100px;
   --font-base: "Poppins", sans-serif;
   --bg: #111218;
   --bg-elevated: rgba(27, 29, 38, 0.88);
@@ -47,7 +49,11 @@ body {
   font-family: var(--font-base);
   color: var(--text-main);
   background:
-    radial-gradient(circle at top left, rgba(255, 152, 0, 0.14), transparent 30%),
+    radial-gradient(
+      circle at var(--glow-cursor-x) var(--glow-cursor-y),
+      rgba(255, 152, 0, 0.14),
+      transparent 30%
+    ),
     radial-gradient(circle at right 10%, rgba(255, 255, 255, 0.08), transparent 28%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 45%),
     var(--bg);
@@ -99,8 +105,10 @@ textarea {
 }
 
 .background-glow--one {
-  top: -60px;
-  left: -40px;
+  top: 0;
+  left: 0;
+  transform: translate(calc(-50% + var(--glow-cursor-x)), calc(-50% + var(--glow-cursor-y)));
+  will-change: transform;
   background: rgba(255, 152, 0, 0.18);
 }
 
